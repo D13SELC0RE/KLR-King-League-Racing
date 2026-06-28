@@ -6,88 +6,78 @@
   <title>Race Results – KLR Season 1</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#000;--surface:#0a0a0f;--card:#0d0d18;--border:#1a1a2e;--blue:#2979ff;--neon:#c6ff00;--neon2:#00e5ff;--text:#f0f0f0;--muted:#666;--radius:6px;--ff-d:'Barlow Condensed',sans-serif;--ff-b:'Barlow',sans-serif}
+    :root{--bg:#06060b;--surface:#0c0c14;--card:#11111f;--border:#1e1e38;--blue:#2979ff;--neon:#c6ff00;--neon2:#00e5ff;--text:#f5f5fa;--muted:#7c7c9a;--radius:8px;--ff-d:'Barlow Condensed',sans-serif;--ff-b:'Barlow',sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:15px;line-height:1.5}
+    body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:15px;line-height:1.5;background-image:linear-gradient(rgba(41,121,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(41,121,255,0.02) 1px,transparent 1px);background-size:24px 24px}
     a{color:inherit;text-decoration:none}
-    nav{background:rgba(0,0,0,.92);border-bottom:2px solid var(--blue);box-shadow:0 0 24px rgba(41,121,255,.35);position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
+    nav{background:rgba(6,6,11,0.94);border-bottom:2px solid var(--blue);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
     .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
     .nav-logo{display:flex;align-items:center;gap:12px}
-    .nav-logo img{height:44px;width:44px;object-fit:contain;filter:drop-shadow(0 0 8px var(--blue))}
-    .nav-logo-text{font-family:var(--ff-d);font-size:22px;font-weight:900;letter-spacing:3px;color:var(--blue);text-shadow:0 0 12px var(--blue)}
-    .nav-logo-text span{color:var(--neon);text-shadow:0 0 12px var(--neon)}
+    .nav-logo img{height:44px;width:44px;object-fit:contain}
+    .nav-logo-text{font-family:var(--ff-d);font-size:22px;font-weight:900;letter-spacing:2px;color:#fff}
+    .nav-logo-text span{color:var(--blue)}
     .nav-links{display:flex;gap:32px;list-style:none}
-    .nav-links a{font-family:var(--ff-d);font-weight:600;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);transition:color .2s,text-shadow .2s}
-    .nav-links a:hover,.nav-links a.active{color:var(--blue);text-shadow:0 0 8px var(--blue)}
-    .hero{position:relative;overflow:hidden;background:#000;min-height:340px;display:flex;align-items:center;justify-content:center}
-    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(41,121,255,.18) 0%,transparent 70%),linear-gradient(180deg,#000 0%,#05050f 100%)}
-    .hero-bg::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(41,121,255,.03) 3px,rgba(41,121,255,.03) 4px);pointer-events:none}
-    .hero-lines{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-    .hero-lines::before,.hero-lines::after{content:'';position:absolute;top:50%;width:35%;height:2px;background:linear-gradient(90deg,transparent,var(--neon));transform:translateY(-50%);opacity:.5;animation:speedline 2.4s ease-in-out infinite}
-    .hero-lines::before{left:0;transform:translateY(calc(-50% - 12px)) scaleX(-1);animation-delay:0s}
-    .hero-lines::after{right:0;transform:translateY(calc(-50% + 12px));animation-delay:.6s}
-    @keyframes speedline{0%,100%{opacity:.15;width:20%}50%{opacity:.6;width:38%}}
-    .hero-content{position:relative;z-index:2;text-align:center;padding:60px 20px}
-    .hero-logo-wrap{display:inline-block;margin-bottom:24px;filter:drop-shadow(0 0 28px rgba(41,121,255,.7)) drop-shadow(0 0 60px rgba(41,121,255,.3));animation:pulse-logo 3s ease-in-out infinite}
-    @keyframes pulse-logo{0%,100%{filter:drop-shadow(0 0 28px rgba(41,121,255,.7)) drop-shadow(0 0 60px rgba(41,121,255,.3))}50%{filter:drop-shadow(0 0 40px rgba(41,121,255,1)) drop-shadow(0 0 80px rgba(41,121,255,.5))}}
-    .hero-logo-wrap img{width:120px;height:120px;object-fit:contain;display:block}
-    .hero-eyebrow{font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--neon);text-shadow:0 0 10px var(--neon);margin-bottom:10px}
-    .hero h1{font-family:var(--ff-d);font-size:clamp(48px,9vw,90px);font-weight:900;text-transform:uppercase;line-height:1;letter-spacing:-1px;color:#fff;text-shadow:0 0 40px rgba(41,121,255,.6)}
-    .hero h1 em{font-style:normal;color:var(--blue);text-shadow:0 0 20px var(--blue)}
-    .hero-sub{margin-top:10px;color:var(--muted);font-size:14px;letter-spacing:2px;text-transform:uppercase}
-    .checker-tape{height:12px;background-image:repeating-linear-gradient(90deg,var(--neon) 0px,var(--neon) 12px,#000 12px,#000 24px);opacity:.7}
+    .nav-links a{font-family:var(--ff-d);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:#fff}
+    .hero{position:relative;overflow:hidden;background:#030307;min-height:300px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(41,121,255,0.12) 0%,transparent 75%)}
+    .hero-content{position:relative;z-index:2;text-align:center;padding:40px 20px}
+    .hero-logo-wrap{display:inline-block;margin-bottom:16px}
+    .hero-logo-wrap img{width:100px;height:100px;object-fit:contain;display:block}
+    .hero-eyebrow{font-family:var(--ff-d);font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+    .hero h1{font-family:var(--ff-d);font-size:clamp(40px,7vw,76px);font-weight:900;text-transform:uppercase;line-height:0.95;letter-spacing:-1px;color:#fff}
+    .hero h1 em{font-style:normal;color:var(--blue)}
+    .hero-sub{margin-top:12px;color:var(--muted);font-size:13px;letter-spacing:2px;text-transform:uppercase}
+    .checker-tape{height:8px;background-image:repeating-linear-gradient(90deg,var(--blue) 0px,var(--blue) 12px,#06060b 12px,#06060b 24px);opacity:.4}
     .controls-bar{max-width:1200px;margin:36px auto 0;padding:0 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-    .controls-label{font-family:var(--ff-d);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-    .season-dropdown{appearance:none;background:var(--surface);border:1px solid var(--blue);box-shadow:0 0 8px rgba(41,121,255,.25);color:var(--text);font-family:var(--ff-d);font-size:16px;font-weight:700;letter-spacing:1px;padding:8px 40px 8px 16px;border-radius:var(--radius);cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232979ff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:box-shadow .2s}
-    .season-dropdown:focus{outline:none;box-shadow:0 0 16px rgba(41,121,255,.5)}
+    .controls-label{font-family:var(--ff-d);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+    .season-dropdown{appearance:none;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--ff-d);font-size:15px;font-weight:700;letter-spacing:1px;padding:8px 40px 8px 16px;border-radius:var(--radius);cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232979ff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .2s}
+    .season-dropdown:focus{outline:none;border-color:var(--blue)}
     .season-meta{max-width:1200px;margin:20px auto 0;padding:0 24px}
-    .season-card{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--blue);box-shadow:0 0 32px rgba(41,121,255,.1),inset 0 0 60px rgba(41,121,255,.03);border-radius:var(--radius);padding:28px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px}
-    .meta-block label{display:block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-    .meta-block .value{font-family:var(--ff-d);font-size:22px;font-weight:700;color:var(--text)}
-    .meta-block .value.blue{color:var(--blue);text-shadow:0 0 10px rgba(41,121,255,.5)}
-    .meta-block .value.neon{color:var(--neon);text-shadow:0 0 10px rgba(198,255,0,.4)}
-    .meta-block .sub{font-size:13px;color:var(--muted);margin-top:3px}
+    .season-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius);padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px}
+    .meta-block label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+    .meta-block .value{font-family:var(--ff-d);font-size:24px;font-weight:800;color:#fff}
+    .meta-block .value.blue{color:var(--blue)}
+    .meta-block .value.neon{color:var(--neon)}
+    .meta-block .sub{font-size:12px;color:var(--muted);margin-top:2px}
     .section-header{max-width:1200px;margin:44px auto 18px;padding:0 24px;display:flex;align-items:center;gap:16px}
-    .section-header h2{font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-    .section-header::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
-    .race-grid{max-width:1200px;margin:0 auto 80px;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
-    .race-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .2s;position:relative}
-    .race-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--neon2),var(--neon));opacity:0;transition:opacity .25s;z-index:1}
-    .race-card:hover{border-color:var(--blue);box-shadow:0 0 28px rgba(41,121,255,.2),0 8px 32px rgba(0,0,0,.5);transform:translateY(-3px)}
-    .race-card:hover::before{opacity:1}
-    .race-card.upcoming{opacity:.45}
-    .race-card.upcoming .card-body::after{content:'UPCOMING';position:absolute;top:12px;right:12px;background:var(--border);color:var(--muted);font-family:var(--ff-d);font-size:10px;font-weight:700;letter-spacing:2px;padding:3px 9px;border-radius:3px}
-    .card-header{position:relative;height:130px;overflow:hidden;background:#05050f}
-    .card-track-img{width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(.6);transition:filter .3s}
-    .race-card:hover .card-track-img{filter:brightness(.55) saturate(.8)}
-    .card-header-overlay{position:absolute;inset:0;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,rgba(0,0,0,.3) 0%,rgba(0,0,0,.6) 100%)}
-    .card-top-row{display:flex;align-items:flex-start;justify-content:space-between}
-    .round-badge{font-family:var(--ff-d);font-size:11px;font-weight:700;letter-spacing:2px;background:var(--blue);color:#fff;padding:3px 10px;border-radius:3px}
-    .race-date{font-size:12px;color:rgba(255,255,255,.55);font-family:var(--ff-d);letter-spacing:1px}
+    .section-header h2{font-family:var(--ff-d);font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+    .section-header::after{content:'';flex:1;height:1px;background:var(--border)}
+    .race-grid{max-width:1200px;margin:0 auto 80px;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+    .race-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s,transform .2s;position:relative}
+    .race-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+    .race-card.upcoming{opacity:.5}
+    .race-card.upcoming .card-body::after{content:'UPCOMING';position:absolute;top:12px;right:12px;background:var(--border);color:var(--muted);font-family:var(--ff-d);font-size:10px;font-weight:700;letter-spacing:1.5px;padding:3px 8px;border-radius:3px}
+    .card-header{position:relative;height:120px;overflow:hidden;background:#090911}
+    .card-track-img{width:100%;height:100%;object-fit:cover;filter:brightness(.45);transition:filter .3s}
+    .race-card:hover .card-track-img{filter:brightness(.55)}
+    .card-header-overlay{position:absolute;inset:0;padding:16px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,rgba(0,0,0,0.2) 0%,rgba(6,6,11,0.8) 100%)}
+    .card-top-row{display:flex;align-items:center;justify-content:space-between}
+    .round-badge{font-family:var(--ff-d);font-size:11px;font-weight:700;letter-spacing:1px;background:var(--border);color:#fff;padding:3px 8px;border-radius:3px}
+    .race-date{font-size:12px;color:var(--muted);font-family:var(--ff-d);letter-spacing:0.5px}
     .card-bottom-row{display:flex;align-items:flex-end;gap:10px}
-    .flag{font-size:28px;line-height:1}
-    .race-circuit{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:1px;text-transform:uppercase}
-    .race-location{font-family:var(--ff-d);font-size:26px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;line-height:1;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8)}
-    .card-body{padding:16px 18px 14px;position:relative}
-    .podium{display:flex;flex-direction:column;gap:9px}
-    .podium-row{display:flex;align-items:center;gap:10px}
-    .pos{font-family:var(--ff-d);font-size:22px;font-weight:900;width:26px;text-align:center;line-height:1;flex-shrink:0}
-    .pos.p1{color:var(--neon);text-shadow:0 0 8px rgba(198,255,0,.6)}
-    .pos.p2{color:#aaa}
-    .pos.p3{color:#cd7f32}
-    .team-logo-wrap{width:36px;height:36px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
-    .team-logo-wrap img{width:32px;height:32px;object-fit:contain;display:block}
-    .team-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-    .driver-name{font-family:var(--ff-d);font-size:17px;font-weight:700;letter-spacing:.3px;flex:1}
-    .team-tag{font-size:11px;color:var(--muted);background:rgba(255,255,255,.05);padding:2px 8px;border-radius:3px;white-space:nowrap}
-    .card-footer{border-top:1px solid var(--border);padding:10px 18px;display:flex;justify-content:flex-end}
-    .btn-results{font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);border:1px solid var(--blue);padding:5px 16px;border-radius:3px;transition:background .15s,color .15s,box-shadow .15s}
-    .btn-results:hover{background:var(--blue);color:#000;box-shadow:0 0 14px rgba(41,121,255,.5)}
-    .btn-upcoming{font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
-    footer{background:#000;border-top:1px solid var(--border);padding:40px 20px;text-align:center}
+    .flag{font-size:24px;line-height:1}
+    .race-circuit{font-size:11px;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase}
+    .race-location{font-family:var(--ff-d);font-size:24px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;line-height:1;color:#fff}
+    .card-body{padding:16px;position:relative}
+    .podium{display:flex;flex-direction:column;gap:10px}
+    .podium-row{display:flex;align-items:center;gap:12px}
+    .pos{font-family:var(--ff-d);font-size:20px;font-weight:900;width:24px;text-align:center;line-height:1;color:var(--muted)}
+    .pos.p1{color:var(--neon)}
+    .pos.p2{color:#d1d5db}
+    .pos.p3{color:#f59e0b}
+    .team-logo-wrap{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+    .team-logo-wrap img{width:24px;height:24px;object-fit:contain;display:block}
+    .driver-name{font-family:var(--ff-d);font-size:18px;font-weight:700;flex:1;color:#fff}
+    .team-tag{font-size:11px;color:var(--muted);background:rgba(255,255,255,0.04);padding:2px 8px;border-radius:3px;white-space:nowrap}
+    .card-footer{border-top:1px solid var(--border);padding:12px 16px;display:flex;justify-content:flex-end;background:rgba(0,0,0,0.1)}
+    .btn-results{font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;border:1px solid var(--border);padding:6px 16px;border-radius:4px;transition:all .2s;background:rgba(255,255,255,0.02)}
+    .btn-results:hover{background:#fff;color:#000;border-color:#fff}
+    .btn-upcoming{font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+    footer{background:#030307;border-top:1px solid var(--border);padding:40px 20px;text-align:center}
     .footer-logo-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px}
-    .footer-logo-wrap img{height:40px;filter:drop-shadow(0 0 8px var(--blue))}
-    .footer-title{font-family:var(--ff-d);font-size:22px;font-weight:900;letter-spacing:3px;color:var(--blue);text-shadow:0 0 12px rgba(41,121,255,.5)}
+    .footer-logo-wrap img{height:36px}
+    .footer-title{font-family:var(--ff-d);font-size:20px;font-weight:900;letter-spacing:2px;color:#fff}
     footer p{font-size:13px;color:var(--muted);margin-top:6px}
     @media(max-width:640px){.nav-links{display:none}.season-card{grid-template-columns:1fr 1fr}.race-grid{grid-template-columns:1fr}}
   </style>
@@ -110,7 +100,6 @@
 
 <div class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-lines"></div>
   <div class="hero-content">
     <div class="hero-logo-wrap"><img src="images/New%20Project.png" alt="KLR Logo" /></div>
     <div class="hero-eyebrow">King League Racing</div>
@@ -123,7 +112,6 @@
 <div class="controls-bar">
   <span class="controls-label">Season</span>
   <select class="season-dropdown" onchange="switchSeason(this.value)">
-    <!-- ✏️ Add seasons here: <option value="2">Season 2</option> -->
     <option value="1" selected>Season 1 — Current</option>
   </select>
 </div>
@@ -137,44 +125,30 @@
     </div>
     <div class="meta-block">
       <label>Total Rounds</label>
-      <div class="value">13</div><!-- ✏️ UPDATE -->
+      <div class="value">13</div>
       <div class="sub">Planned</div>
     </div>
     <div class="meta-block">
       <label>Season Start</label>
-      <div class="value">23rd June 2026</div><!-- ✏️ UPDATE -->
+      <div class="value">23rd June 2026</div>
     </div>
     <div class="meta-block">
       <label>Driver Champion</label>
-      <div class="value neon">TBD</div><!-- ✏️ UPDATE after season -->
+      <div class="value neon">TBD</div>
       <div class="sub">In progress</div>
     </div>
     <div class="meta-block">
       <label>Team Champion</label>
-      <div class="value neon">TBD</div><!-- ✏️ UPDATE after season -->
+      <div class="value neon">TBD</div>
     </div>
   </div>
 </div>
 
 <div class="section-header"><h2>Race Results — Season 1</h2></div>
 
-<!--
-==========================================================
-  TEAM LOGOS: put PNGs in a "teams/" folder next to index.html
-  e.g. teams/redbull.png  teams/mercedes.png
-  Set each <img src="teams/YOURTEAM.png" alt="Team Name">
-  A coloured dot shows automatically if the file is missing.
-
-  AFTER EACH RACE:
-  1. Remove class "upcoming" from the card
-  2. Fill in: date, logo srcs, driver names, team tags
-  3. Set href on "View Results" to e.g. race1.html
-==========================================================
--->
-
 <div class="race-grid">
 
-  <!-- ROUND 1 — fill in after race -->
+  <!-- ROUND 1 -->
   <div class="race-card">
     <div class="card-header">
       <img class="card-track-img" src="images/Ash%20-%20Merc.png" alt="Australia" />
@@ -193,46 +167,39 @@
       <div class="podium">
         <div class="podium-row">
           <div class="pos p1">1</div>
-          <div class="team-logo-wrap">
-            <!-- ✏️ src="teams/redbull.png" — coloured dot shows if file missing -->
-            <img src="teams/mercedes.png" alt="P1 Team" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" />
-          </div>
+          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
           <div class="driver-name">Ash</div>
-          <span class="team-tag">Mercedes-AMG PETRONAS</span>
+          <span class="team-tag">Mercedes</span>
         </div>
         <div class="podium-row">
           <div class="pos p2">2</div>
-          <div class="team-logo-wrap">
-            <img src="teams/mclaren.png" alt="P2 Team" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" />
-          </div>
+          <div class="team-logo-wrap"><img src="teams/mclaren.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
           <div class="driver-name">Roman</div>
-          <span class="team-tag">McLaren Mastercard</span>
+          <span class="team-tag">McLaren</span>
         </div>
         <div class="podium-row">
           <div class="pos p3">3</div>
-          <div class="team-logo-wrap">
-            <img src="teams/racing%20bulls.png" alt="P3 Team" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" />
-          </div>
+          <div class="team-logo-wrap"><img src="teams/racing%20bulls.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
           <div class="driver-name">James</div>
-          <span class="team-tag">Visa Cash App Racing Bulls</span>
+          <span class="team-tag">VCARB</span>
         </div>
       </div>
     </div>
     <div class="card-footer"><a class="btn-results" href="r1s1.html">View Results</a></div>
   </div>
 
-  <!-- ROUND 2 — fill in after race -->
+  <!-- ROUND 2 -->
   <div class="race-card">
     <div class="card-header">
-      <img class="card-track-img" src="images/Ash%20-%20Merc%20-%20China.png" alt="Bahrain" />
+      <img class="card-track-img" src="images/Ash%20-%20Merc%20-%20China.png" alt="China" />
       <div class="card-header-overlay">
         <div class="card-top-row">
           <span class="round-badge">ROUND 2</span>
           <span class="race-date">27th June 2026</span>
         </div>
         <div class="card-bottom-row">
-          <span class="flag">c🇭</span>
-          <div><div class="race-circuit">Shanghai International Circuit</div><div class="race-location">China</div></div>
+          <span class="flag">🇨🇳</span>
+          <div><div class="race-circuit">Shanghai Circuit</div><div class="race-location">China</div></div>
         </div>
       </div>
     </div>
@@ -240,173 +207,141 @@
       <div class="podium">
         <div class="podium-row">
           <div class="pos p1">1</div>
-          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P1 Team" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div>
-          <div class="driver-name">Ash</div><span class="team-tag">Mercedes-AMG PETRONAS</span>
+          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">Ash</div><span class="team-tag">Mercedes</span>
         </div>
         <div class="podium-row">
           <div class="pos p2">2</div>
-          <div class="team-logo-wrap"><img src="teams/mclaren.png" alt="P2 Team" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div>
-          <div class="driver-name">Roman</div><span class="team-tag">McLaren Mastercard</span>
+          <div class="team-logo-wrap"><img src="teams/mclaren.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">Roman</div><span class="team-tag">McLaren</span>
         </div>
         <div class="podium-row">
           <div class="pos p3">3</div>
-          <div class="team-logo-wrap"><img src="teams/redbull.png" alt="P3 Team" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div>
-          <div class="driver-name">Finn</div><span class="team-tag">Oracle Red Bull Racing</span>
+          <div class="team-logo-wrap"><img src="teams/redbull.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">Finn</div><span class="team-tag">Red Bull</span>
         </div>
       </div>
     </div>
     <div class="card-footer"><a class="btn-results" href="r2s1.html">View Results</a></div>
   </div>
 
-  <!-- ROUNDS 3–12 UPCOMING — remove "upcoming" class and fill in after each race -->
-
+  <!-- ROUND 3 -->
   <div class="race-card upcoming">
     <div class="card-header"><div class="card-header-overlay">
-      <div class="card-top-row"><span class="round-badge">ROUND 3</span><span class="race-date"></span></div>
-      <div class="card-bottom-row"><span class="flag">🇯🇵</span><div><div class="race-circuit">suzuka circuit</div><div class="race-location">Japan</div></div></div>
+      <div class="card-top-row"><span class="round-badge">ROUND 3</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇯🇵</span><div><div class="race-circuit">Suzuka Circuit</div><div class="race-location">Japan</div></div></div>
     </div></div>
     <div class="card-body"><div class="podium">
-      <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-      <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-      <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
+      <div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div>
     </div></div>
     <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
   </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 4</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇧🇭</span><div><div class="race-circuit">Bahrain International Circuit</div><div class="race-location">Bahrain</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 5</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇸🇦</span><div><div class="race-circuit">Jeddah Corniche Circuit</div><div class="race-location">Saudi Arabia</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 6</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇺🇸</span><div><div class="race-circuit">Miami International Autodrome</div><div class="race-location">Miami</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 7</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇮🇹</span><div><div class="race-circuit">Autodromo Internazionale Enzo e Dino Ferrari</div><div class="race-location">Imola</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 8</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇲🇨</span><div><div class="race-circuit">Circuit de Monaco</div><div class="race-location">Monaco</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 9</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇪🇸</span><div><div class="race-circuit">Circuit de Barcelona-Catalunya</div><div class="race-location">Spain</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 10</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇨🇦</span><div><div class="race-circuit">Circuit Gilles Villeneuve</div><div class="race-location">Canada</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 11</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇦🇹</span><div><div class="race-circuit">Red Bull Ring</div><div class="race-location">Austria</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 12</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇬🇧</span><div><div class="race-circuit">Silverstone Circuit</div><div class="race-location">Great britian</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
-    
-    <div class="race-card upcoming">
-        <div class="card-header"><div class="card-header-overlay">
-          <div class="card-top-row"><span class="round-badge">ROUND 13</span><span class="race-date"></span></div>
-          <div class="card-bottom-row"><span class="flag">🇧🇪</span><div><div class="race-circuit">Spa-Francorchamps</div><div class="race-location">Belgium</div></div></div>
-        </div></div>
-        <div class="card-body"><div class="podium">
-          <div class="podium-row"><div class="pos p1">1</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#3b82f6;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p2">2</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#aaa;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-          <div class="podium-row"><div class="pos p3">3</div><div class="team-logo-wrap"><img src="teams/placeholder.png" alt="" onerror="this.outerHTML='<div class=\'team-dot\' style=\'background:#cd7f32;width:10px;height:10px;border-radius:50%\'></div>'" /></div><div class="driver-name">—</div></div>
-        </div></div>
-        <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-      </div>
+
+  <!-- ROUND 4 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 4</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇧rain</span><div><div class="race-circuit">Sakhir Circuit</div><div class="race-location">Bahrain</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 5 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 5</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇸🇦</span><div><div class="race-circuit">Jeddah Corniche</div><div class="race-location">Saudi Arabia</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 6 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 6</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇺🇸</span><div><div class="race-circuit">Miami Autodrome</div><div class="race-location">Miami</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 7 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 7</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇮🇹</span><div><div class="race-circuit">Autodromo Imola</div><div class="race-location">Imola</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 8 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 8</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇲🇨</span><div><div class="race-circuit">Circuit de Monaco</div><div class="race-location">Monaco</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 9 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 9</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇨🇦</span><div><div class="race-circuit">Circuit Gilles Villeneuve</div><div class="race-location">Canada</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 10 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 10</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇪🇸</span><div><div class="race-circuit">Circuit de Barcelona</div><div class="race-location">Spain</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 11 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 11</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇦🇹</span><div><div class="race-circuit">Red Bull Ring</div><div class="race-location">Austria</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 12 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 12</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇬🇧</span><div><div class="race-circuit">Silverstone Circuit</div><div class="race-location">Great Britain</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
+  <!-- ROUND 13 -->
+  <div class="race-card upcoming">
+    <div class="card-header"><div class="card-header-overlay">
+      <div class="card-top-row"><span class="round-badge">ROUND 13</span><span class="race-date">TBD</span></div>
+      <div class="card-bottom-row"><span class="flag">🇧🇪</span><div><div class="race-circuit">Spa-Francorchamps</div><div class="race-location">Belgium</div></div></div>
+    </div></div>
+    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  </div>
+
 </div>
 
 <footer>
   <div class="footer-logo-wrap">
-    <img src="klr-logo.png" alt="KLR" />
+    <img src="images/New%20Project.png" alt="KLR" />
     <div class="footer-title">King League Racing</div>
   </div>
   <p>Season 1 · All rights reserved · KLR</p>

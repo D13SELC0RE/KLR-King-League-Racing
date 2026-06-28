@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Championship Standings – KLR Season 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#06060b;
+      --surface:#0c0c14;
+      --card:#11111f;
+      --border:#1e1e38;
+      --blue:#2979ff;
+      --neon:#c6ff00;
+      --text:#f5f5fa;
+      --muted:#7c7c9a;
+      --radius:8px;
+      --ff-d:'Barlow Condensed',sans-serif;
+      --ff-b:'Barlow',sans-serif
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--ff-b);
+      font-size:15px;
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    
+    /* Navigation Matching KLR Architecture */
+    nav{background:rgba(6,6,11,0.94);border-bottom:2px solid var(--blue);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+    .nav-inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{display:flex;align-items:center;gap:12px}
+    .nav-logo img{height:44px;width:44px;object-fit:contain}
+    .nav-logo-text{font-family:var(--ff-d);font-size:22px;font-weight:900;letter-spacing:2px;color:#fff}
+    .nav-logo-text span{color:var(--blue)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-family:var(--ff-d);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+    .nav-links a:hover,.nav-links a.active{color:#fff}
+
+    /* Header Container */
+    .page-header{max-width:1400px;margin:32px auto 0;padding:0 24px}
+    .page-header h1{font-family:var(--ff-d);font-size:40px;font-weight:900;text-transform:uppercase;letter-spacing:1px;line-height:1;color:#fff}
+    .page-header p{font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px}
+
+    /* --- ULTIMATE SPLIT LAYOUT CONFIG --- */
+    .split-championship-container {
+      max-width: 1400px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .championship-column-title {
+      font-family: var(--ff-d);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .championship-column-title span {
+      color: var(--blue);
+    }
+
+    /* Mini Premium Podium Layout for Drivers side */
+    .mini-podium {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1fr;
+      gap: 12px;
+      align-items: flex-end;
+      margin-bottom: 24px;
+    }
+    .mini-podium-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 12px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .mini-podium-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--p-color);
+      z-index: 4;
+    }
+    .mini-podium-card.p1 { height: 160px; background: linear-gradient(180deg, #16162e 0%, var(--card) 100%); }
+    .mini-podium-card.p1 .mp-rank { color: var(--neon); font-size: 36px; }
+    .mini-podium-card.p2 { height: 140px; }
+    .mini-podium-card.p3 { height: 125px; }
+
+    /* Driver Portrait Photo Container Setup */
+    .mp-photo-wrapper {
+      position: absolute;
+      top: 3px;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(12,12,20,0) 100%);
+    }
+    .mp-photo-wrapper img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+    }
+    
+    /* Content overlay wrapper to keep text crisp on top of the graphics */
+    .mp-content {
+      position: relative;
+      z-index: 3;
+      background: linear-gradient(180deg, rgba(17,17,31,0) 0%, var(--card) 40%);
+      width: 100%;
+      padding-top: 20px;
+    }
+    
+    .mp-rank {
+      font-family: var(--ff-d);
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .mp-name { font-family: var(--ff-d); font-size: 16px; font-weight: 700; color: #fff; text-transform: uppercase; }
+    .mp-team { font-size: 10px; color: var(--muted); text-transform: uppercase; }
+
+    /* Constructors Visual Grid cards with heavy car graphics */
+    .constructors-showcase {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .constructor-showcase-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--team-color);
+      border-radius: var(--radius);
+      height: 96px;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+    }
+    .constructor-showcase-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 50%, rgba(var(--team-rgb), 0.08) 100%);
+      pointer-events: none;
+    }
+    .constructor-showcase-card:hover {
+      transform: translateX(4px);
+      border-color: rgba(var(--team-rgb), 0.5);
+    }
+    .c-info-side {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 2;
+    }
+    .c-rank-badge {
+      font-family: var(--ff-d);
+      font-size: 24px;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--muted);
+      width: 30px;
+    }
+    .constructor-showcase-card:nth-child(1) .c-rank-badge { color: var(--neon); }
+    .constructor-showcase-card:nth-child(2) .c-rank-badge { color: #fff; }
+    
+    .c-meta .c-title { font-family: var(--ff-d); font-size: 20px; font-weight: 800; color: #fff; text-transform: uppercase; line-height: 1.1; }
+    .c-meta .c-drivers { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    /* Dynamic Car Alignment on Constructor cards instead of drivers */
+    .c-car-graphic {
+      position: absolute;
+      right: 90px;
+      bottom: -15px;
+      height: 85px;
+      width: auto;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 1;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.5));
+      transform: rotate(-3deg);
+      transition: transform 0.3s ease;
+    }
+    .constructor-showcase-card:hover .c-car-graphic {
+      transform: scale(1.05) rotate(-1deg) translateX(-5px);
+    }
+
+    .c-pts-side {
+      font-family: var(--ff-d);
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+      z-index: 2;
+      text-align: right;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      padding: 4px 14px;
+      border-radius: 6px;
+      min-width: 75px;
+    }
+    .constructor-showcase-card:hover .c-pts-side { color: var(--neon); border-color: rgba(var(--team-rgb), 0.3); }
+
+    /* Tables Style Custom Setup */
+    .table-wrapper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow-x: auto;
+    }
+    .standings-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+    .standings-table th {
+      background: rgba(12,12,20,0.5);
+      font-family: var(--ff-d);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--border);
+    }
+    .standings-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .standings-table tr:last-child td { border-bottom: none; }
+    .standings-table tr:hover td { background: rgba(255,255,255,0.01); }
+
+    .col-rank { font-family: var(--ff-d); font-size: 16px; font-weight: 900; width: 50px; text-align: center; color: var(--muted); }
+    tr:nth-child(1) .col-rank { color: var(--neon); }
+    tr:nth-child(2) .col-rank { color: #fff; }
+
+    .col-num { font-family: var(--ff-d); font-size: 13px; color: var(--muted); width: 45px; text-align: center; }
+    .driver-cell { display: flex; align-items: center; gap: 10px; }
+    .table-team-logo {
+      width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+    }
+    .table-team-logo img { width: 18px; height: 18px; object-fit: contain; }
+    .driver-name { font-family: var(--ff-d); font-size: 16px; font-weight: 700; color: #fff; }
+    .team-tag { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
+    .col-stat { font-family: var(--ff-d); font-size: 14px; text-align: center; width: 55px; }
+    .col-pts { font-family: var(--ff-d); font-size: 16px; font-weight: 700; color: #fff; text-align: center; width: 65px; }
+    tr:hover .col-pts { color: var(--neon); }
+
+    footer{background:#030307;border-top:1px solid var(--border);padding:40px 20px;text-align:center}
+
+    /* Responsive Architecture Breakpoints */
+    @media(max-width: 1024px) {
+      .split-championship-container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="images/New%20Project.png" alt="KLR" />
+      <div class="nav-logo-text">KLR <span>Racing</span></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="standings.html" class="active">Standings</a></li>
+      <li><a href="index.html">Results</a></li>
+      <li><a href="drivers.html">Drivers</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>Championship Standings</h1>
+  <p>Season 1 Official Title Leaderboards</p>
+</header>
+
+<main class="split-championship-container">
+  
+  <!-- ================= LEFT SIDE: DRIVERS ================= -->
+  <section class="championship-block-side">
+    <h2 class="championship-column-title">Drivers' <span>Championship</span></h2>
+    
+    <!-- Mini Podium visual for Top 3 drivers with Portraits -->
+    <div class="mini-podium">
+      
+      <!-- P2: Roman -->
+      <div class="mini-podium-card p2" style="--p-color: #ff8700;">
+        <div class="mp-photo-wrapper">
+          <img src="images/drivers/roman.png" alt="" onerror="this.style.opacity='0';" />
+        </div>
+        <div class="mp-content">
+          <div class="mp-rank">2</div>
+          <div class="mp-name">Roman</div>
+          <div class="mp-team">McLaren</div>
+        </div>
+      </div>
+      
+      <!-- P1: Ash -->
+      <div class="mini-podium-card p1" style="--p-color: #00a19c;">
+        <div class="mp-photo-wrapper">
+          <img src="images/drivers/ash.png" alt="" onerror="this.style.opacity='0';" />
+        </div>
+        <div class="mp-content">
+          <div class="mp-rank">1</div>
+          <div class="mp-name">Ash</div>
+          <div class="mp-team">Mercedes</div>
+        </div>
+      </div>
+      
+      <!-- P3: James -->
+      <div class="mini-podium-card p3" style="--p-color: #7091f8;">
+        <div class="mp-photo-wrapper">
+          <img src="images/drivers/james.png" alt="" onerror="this.style.opacity='0';" />
+        </div>
+        <div class="mp-content">
+          <div class="mp-rank">3</div>
+          <div class="mp-name">James</div>
+          <div class="mp-team">VCARB</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Complete Drivers Table List -->
+    <div class="table-wrapper">
+      <table class="standings-table">
+        <thead>
+          <tr>
+            <th style="text-align:center;">Pos</th>
+            <th style="text-align:center;">No</th>
+            <th>Driver</th>
+            <th>Team</th>
+            <th style="text-align:center;">Wins</th>
+            <th style="text-align:center;">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-rank">1</td>
+            <td class="col-num">72</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/mercedes.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Ash</div>
+              </div>
+            </td>
+            <td><span class="team-tag">Mercedes</span></td>
+            <td class="col-stat">2</td>
+            <td class="col-pts">50</td>
+          </tr>
+          <tr>
+            <td class="col-rank">2</td>
+            <td class="col-num">5</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/mclaren.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Roman</div>
+              </div>
+            </td>
+            <td><span class="team-tag">McLaren</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">36</td>
+          </tr>
+          <tr>
+            <td class="col-rank">3</td>
+            <td class="col-num">30</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/racing%20bulls.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">James</div>
+              </div>
+            </td>
+            <td><span class="team-tag">VCARB</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">24</td>
+          </tr>
+          <tr>
+            <td class="col-rank">4</td>
+            <td class="col-num">25</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/redbull.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Finn</div>
+              </div>
+            </td>
+            <td><span class="team-tag">Red Bull</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">24</td>
+          </tr>
+          <tr>
+            <td class="col-rank">5</td>
+            <td class="col-num">90</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/williams.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Lucas</div>
+              </div>
+            </td>
+            <td><span class="team-tag">Williams</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">20</td>
+          </tr>
+          <tr>
+            <td class="col-rank">6</td>
+            <td class="col-num">69</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/redbull.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Austin</div>
+              </div>
+            </td>
+            <td><span class="team-tag">Red BUll</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">12</td>
+          </tr>
+          <tr>
+            <td class="col-rank">7</td>
+            <td class="col-num">42</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/haas.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Michael</div>
+              </div>
+            </td>
+            <td><span class="team-tag">Haas</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">6</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= RIGHT SIDE: CONSTRUCTORS ================= -->
+  <section class="championship-block-side">
+    <h2 class="championship-column-title">Constructors' <span>Championship</span></h2>
+    
+    <div class="constructors-showcase">
+      
+      <!-- Mercedes -->
+      <div class="constructor-showcase-card" style="--team-color: #00a19c; --team-rgb: 0, 161, 156;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">1</div>
+          <div class="c-meta">
+            <div class="c-title">Mercedes-AMG PETRONAS</div>
+            <div class="c-drivers">Ash</div>
+          </div>
+        </div>
+        <img src="images/cars/mercedes.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">50</div>
+      </div>
+
+      <!-- McLaren -->
+      <div class="constructor-showcase-card" style="--team-color: #ff8700; --team-rgb: 255, 135, 0;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">2</div>
+          <div class="c-meta">
+            <div class="c-title">McLaren</div>
+            <div class="c-drivers">Roman</div>
+          </div>
+        </div>
+        <img src="images/cars/mclaren.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">36</div>
+      </div>
+
+      <!-- Red Bull Racing -->
+      <div class="constructor-showcase-card" style="--team-color: #2979ff; --team-rgb: 41, 121, 255;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">3</div>
+          <div class="c-meta">
+            <div class="c-title">Red Bull Racing</div>
+            <div class="c-drivers">Finn · Austin</div>
+          </div>
+        </div>
+        <img src="images/cars/red%20bull.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">36</div>
+      </div>
+
+      <!-- VCARB -->
+      <div class="constructor-showcase-card" style="--team-color: #7091f8; --team-rgb: 112, 145, 248;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">4</div>
+          <div class="c-meta">
+            <div class="c-title">Visa Cash App RB</div>
+            <div class="c-drivers">James</div>
+          </div>
+        </div>
+        <img src="images/cars/vcarb.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">24</div>
+      </div>
+
+      <!-- Williams -->
+      <div class="constructor-showcase-card" style="--team-color: #367fa9; --team-rgb: 54, 127, 169;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">5</div>
+          <div class="c-meta">
+            <div class="c-title">Williams Racing</div>
+            <div class="c-drivers">Lucas</div>
+          </div>
+        </div>
+        <img src="images/cars/williams.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">20</div>
+      </div>
+
+      <!-- Haas -->
+      <div class="constructor-showcase-card" style="--team-color: #ffffff; --team-rgb: 255, 255, 255;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">6</div>
+          <div class="c-meta">
+            <div class="c-title">MoneyGram Haas</div>
+            <div class="c-drivers">Michael</div>
+          </div>
+        </div>
+        <img src="images/cars/haas.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">6</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Season 1 · King League Racing</p>
+</footer>
+
+</body>
+</html>
