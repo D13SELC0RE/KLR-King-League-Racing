@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drivers Lineup – KLR Season 1</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Added Caveat font for the fancy signature style script -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet" />
   <style>
     :root{
       --bg:#06060b;
@@ -227,21 +228,39 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding-top: 14px;
     }
+    
+    /* F1.com Authentic Signature Layout from Screenshot 2026-06-28 202543.png */
     .driver-display-name {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .driver-display-name .first-name {
+      font-family: 'Caveat', cursive; /* Applied handwritten style script */
+      font-weight: 700;
+      font-size: 34px; /* Scaled up to give script typography proper emphasis */
+      text-transform: none; /* Preserves normal sentence-case script flow */
+      color: #fff;
+      margin-bottom: -10px; /* Pulls bold last name up into the script slightly */
+      padding-left: 2px;
+      letter-spacing: 0.5px;
+    }
+    .driver-display-name .last-name {
       font-family: var(--ff-d);
       font-size: 32px;
       font-weight: 900;
       text-transform: uppercase;
       color: #fff;
-      line-height: 1;
+      letter-spacing: 0.5px;
     }
+    
     .driver-display-team {
       font-size: 12px;
       font-weight: 600;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-top: 4px;
+      margin-top: 6px;
       transition: color 0.3s ease;
     }
     .driver-card:hover .driver-display-team, .driver-card:active .driver-display-team {
@@ -313,8 +332,11 @@
         <div class="stat-box"><span class="stat-label">Podiums</span><span class="stat-val">2</span></div>
       </div>
       <div class="card-bottom">
-        <div class="driver-display-name">Roman</div>
-        <div class="driver-display-team">McLaren Mastercard</div>
+        <div class="driver-display-name">
+          <span class="first-name">Roman</span>
+          <span class="last-name">Fernandez</span>
+        </div>
+        <div class="driver-display-team">Stake Kick Sauber</div>
       </div>
     </div>
   </div>
@@ -336,7 +358,10 @@
         <div class="stat-box"><span class="stat-label">Podiums</span><span class="stat-val">2</span></div>
       </div>
       <div class="card-bottom">
-        <div class="driver-display-name">Ash</div>
+        <div class="driver-display-name">
+          <span class="first-name">Ash</span>
+          <span class="last-name">Bartlam</span>
+        </div>
         <div class="driver-display-team">Mercedes-AMG Petronas</div>
       </div>
     </div>
@@ -359,7 +384,10 @@
         <div class="stat-box"><span class="stat-label">Podiums</span><span class="stat-val">0</span></div>
       </div>
       <div class="card-bottom">
-        <div class="driver-display-name">Michael</div>
+        <div class="driver-display-name">
+          <span class="first-name">Michael</span>
+          <span class="last-name">van Loggerenburg</span>
+        </div>
         <div class="driver-display-team">MoneyGram Haas F1 Team</div>
       </div>
     </div>
@@ -382,7 +410,10 @@
         <div class="stat-box"><span class="stat-label">Podiums</span><span class="stat-val">1</span></div>
       </div>
       <div class="card-bottom">
-        <div class="driver-display-name">James</div>
+        <div class="driver-display-name">
+          <span class="first-name">James</span>
+          <span class="last-name">van rensburg</span>
+        </div>
         <div class="driver-display-team">Visa Cash App RB</div>
       </div>
     </div>
@@ -405,12 +436,16 @@
         <div class="stat-box"><span class="stat-label">Podiums</span><span class="stat-val">1</span></div>
       </div>
       <div class="card-bottom">
-        <div class="driver-display-name">Finn</div>
+        <div class="driver-display-name">
+          <span class="first-name">Finn</span>
+          <span class="last-name">Bevington crean</span>
+        </div>
         <div class="driver-display-team">Oracle Red Bull Racing</div>
       </div>
     </div>
   </div>
   
+  <!-- Alleen: McLaren -->
   <div class="driver-card" style="--team-border: #FF8000; --leak-rgb: 255, 128, 0; --num-rgb: 255, 128, 0;">
     <div class="driver-bg-number">20</div>
     <div class="car-section">
@@ -418,7 +453,7 @@
     </div>
     <div class="content-section">
       <div class="card-top">
-        <div class="driver-num-plate" style="color:#; background:rgba(255, 127, 0); border-color:#2979ff;">#20</div>
+        <div class="driver-num-plate" style="color:#fff; background:rgba(255, 127, 0, 0.3); border-color:#2979ff;">#20</div>
         <div class="team-badge-logo"><img src="teams/mclaren.png" alt="Red Bull" onerror="this.style.display='none'"/></div>
       </div>
       <div class="card-stats-row">
@@ -427,7 +462,10 @@
         <div class="stat-box"><span class="stat-label">Podiums</span><span class="stat-val">0</span></div>
       </div>
       <div class="card-bottom">
-        <div class="driver-display-name">Alleen</div>
+        <div class="driver-display-name">
+          <span class="first-name">Alleen</span>
+          <span class="last-name">Tulo</span>
+        </div>
         <div class="driver-display-team">McLaren Mastercard</div>
       </div>
     </div>
@@ -450,7 +488,10 @@
         <div class="stat-box"><span class="stat-label">Podiums</span><span class="stat-val">0</span></div>
       </div>
       <div class="card-bottom">
-        <div class="driver-display-name">Austin</div>
+        <div class="driver-display-name">
+          <span class="first-name">Austin</span>
+          <span class="last-name">Lauder</span>
+        </div>
         <div class="driver-display-team">Oracle Red Bull Racing</div>
       </div>
     </div>
@@ -473,12 +514,14 @@
         <div class="stat-box"><span class="stat-label">Podiums</span><span class="stat-val">0</span></div>
       </div>
       <div class="card-bottom">
-        <div class="driver-display-name">Lucas</div>
+        <div class="driver-display-name">
+          <span class="first-name">Lucas</span>
+          <span class="last-name">THOMSEN</span>
+        </div>
         <div class="driver-display-team">Atlassian Williams Racing</div>
       </div>
     </div>
   </div>
-
 
 </main>
 
