@@ -170,10 +170,10 @@
 <div class="countdown-banner">
   <div class="countdown-inner">
     <div class="countdown-info">
-      <span class="countdown-flag fi fi-jp"></span>
+      <span class="countdown-flag fi fi-bh"></span>
       <div class="countdown-label">
-        <h3>Round 3: Japanese Grand Prix</h3>
-        <p>Suzuka Circuit — Next Race Weekend</p>
+        <h3>Round 4: Bahrain Grand Prix</h3>
+        <p>Sakhir Circuit — Next Race Weekend</p>
       </div>
     </div>
     <div class="countdown-timer-wrap">
@@ -312,13 +312,40 @@
   </div>
 
   <!-- ROUND 3 -->
-  <div class="race-card upcoming">
-    <div class="card-header"><div class="card-header-overlay">
-      <div class="card-top-row"><span class="round-badge">ROUND 3</span><span class="race-date">5th July 2026</span></div>
-      <div class="card-bottom-row"><span class="card-flag-wrap fi fi-jp"></span><div><div class="race-circuit">Suzuka Circuit</div><div class="race-location">Japan</div></div></div>
-    </div></div>
-    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+  <div class="race-card">
+    <div class="card-header">
+      <img class="card-track-img" src="images/win/r3s1win.png" alt="China" />
+      <div class="card-header-overlay">
+        <div class="card-top-row">
+          <span class="round-badge">ROUND 3</span>
+          <span class="race-date">5th July 2026</span>
+        </div>
+        <div class="card-bottom-row">
+          <span class="card-flag-wrap fi fi-jp"></span>
+          <div><div class="race-circuit">Suzuka Circuit</div><div class="race-location">Japan</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="podium">
+        <div class="podium-row">
+          <div class="pos p1">1</div>
+          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">BARTLAM</div><span class="team-tag">Mercedes</span>
+        </div>
+        <div class="podium-row">
+          <div class="pos p2">2</div>
+          <div class="team-logo-wrap"><img src="teams/kick.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">FERNANDEZ</div><span class="team-tag">Kick Sauber</span>
+        </div>
+        <div class="podium-row">
+          <div class="pos p3">3</div>
+          <div class="team-logo-wrap"><img src="teams/redbull.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">BEVINGTON CREAN</div><span class="team-tag">Red Bull</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer"><a class="btn-results" href="r3s1.html">View Results</a></div>
   </div>
 
   <!-- ROUND 4 -->
@@ -451,7 +478,7 @@
     if (difference <= 0) {
       const wrap = document.querySelector(".countdown-timer-wrap");
       if (wrap) {
-        wrap.innerHTML = "<div class='timer-segment' style='min-width:140px;'><div class='timer-num' style='color:var(--neon); font-size:16px;'>RACE UNDERWAY</div></div>";
+        wrap.innerHTML = "<div class='timer-segment' style='min-width:140px;'><div class='timer-num' style='color:var(--neon); font-size:16px;'>TBD</div></div>";
       }
       clearInterval(countdownInterval);
       return;
