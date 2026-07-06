@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Championship Standings – KLR GT Season 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#060608;
+      --surface:#0b0b10;
+      --card:#10101a;
+      --border:#1c1c2e;
+      --gt-orange:#e60000;
+      --amber:#ffb300;
+      --text:#f5f5fa;
+      --muted:#72728a;
+      --radius:6px;
+      --ff-d:'Barlow Condensed',sans-serif;
+      --ff-b:'Barlow',sans-serif
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--ff-b);
+      font-size:15px;
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    
+    nav{background:rgba(6,6,8,0.94);border-bottom:2px solid var(--gt-orange);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+    .nav-inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{display:flex;align-items:center;gap:12px}
+    .nav-logo img{height:44px;width:44px;object-fit:contain}
+    .nav-logo-text{font-family:var(--ff-d);font-size:22px;font-weight:900;letter-spacing:2px;color:#fff}
+    .nav-logo-text span{color:var(--gt-orange)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-family:var(--ff-d);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+    .nav-links a:hover,.nav-links a.active{color:#fff}
+
+    .page-header{max-width:1400px;margin:32px auto 0;padding:0 24px}
+    .page-header h1{font-family:var(--ff-d);font-size:40px;font-weight:900;text-transform:uppercase;letter-spacing:1px;line-height:1;color:#fff}
+    .page-header p{font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px}
+
+    .split-championship-container {
+      max-width: 1400px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .championship-column-title {
+      font-family: var(--ff-d);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .championship-column-title span {
+      color: var(--gt-orange);
+    }
+
+    /* Podium */
+    .mini-podium {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1fr;
+      gap: 12px;
+      align-items: flex-end;
+      margin-bottom: 24px;
+    }
+    .mini-podium-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 12px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .mini-podium-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--p-color);
+      z-index: 4;
+    }
+    .mini-podium-card.p1 { height: 160px; background: linear-gradient(180deg, #22120c 0%, var(--card) 100%); }
+    .mini-podium-card.p1 .mp-rank { color: var(--amber); font-size: 36px; }
+    .mini-podium-card.p2 { height: 140px; }
+    .mini-podium-card.p3 { height: 125px; }
+
+    .mp-photo-wrapper {
+      position: absolute;
+      top: 3px;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .mp-photo-wrapper img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+    }
+    
+    .mp-content {
+      position: relative;
+      z-index: 3;
+      background: linear-gradient(180deg, rgba(17,17,31,0) 0%, var(--card) 40%);
+      width: 100%;
+      padding-top: 20px;
+    }
+    
+    .mp-rank { font-family: var(--ff-d); font-size: 28px; font-weight: 900; line-height: 1; margin-bottom: 2px; }
+    .mp-name { font-family: var(--ff-d); font-size: 16px; font-weight: 700; color: #fff; text-transform: uppercase; }
+    .mp-team { font-size: 10px; color: var(--muted); text-transform: uppercase; }
+
+    /* Teams/Manufacturers Grid setup */
+    .constructors-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .constructor-showcase-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--team-color);
+      border-radius: var(--radius);
+      height: 84px;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+    }
+    .constructor-showcase-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 50%, rgba(var(--team-rgb), 0.06) 100%);
+      pointer-events: none;
+    }
+    .constructor-showcase-card:hover {
+      transform: translateX(4px);
+      border-color: rgba(var(--team-rgb), 0.4);
+    }
+    .c-info-side {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 2;
+    }
+    .c-rank-badge {
+      font-family: var(--ff-d);
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--muted);
+      width: 24px;
+    }
+    .constructor-showcase-card:nth-child(1) .c-rank-badge { color: var(--amber); }
+    
+    .c-meta .c-title { font-family: var(--ff-d); font-size: 18px; font-weight: 800; color: #fff; text-transform: uppercase; line-height: 1.1; }
+    .c-meta .c-drivers { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    .c-car-graphic {
+      position: absolute;
+      right: 85px;
+      bottom: -12px;
+      height: 70px;
+      width: auto;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 1;
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
+      transition: transform 0.3s ease;
+    }
+    .constructor-showcase-card:hover .c-car-graphic {
+      transform: scale(1.04) translateX(-4px);
+    }
+
+    .c-pts-side {
+      font-family: var(--ff-d);
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      z-index: 2;
+      text-align: right;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      padding: 2px 12px;
+      border-radius: 4px;
+      min-width: 65px;
+    }
+    .constructor-showcase-card:hover .c-pts-side { color: var(--amber); border-color: rgba(var(--team-rgb), 0.3); }
+
+    /* Tables Style */
+    .table-wrapper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow-x: auto;
+    }
+    .standings-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+    .standings-table th {
+      background: rgba(12,12,16,0.5);
+      font-family: var(--ff-d);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--border);
+    }
+    .standings-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .standings-table tr:last-child td { border-bottom: none; }
+    .standings-table tr:hover td { background: rgba(255,255,255,0.01); }
+
+    .col-rank { font-family: var(--ff-d); font-size: 16px; font-weight: 900; width: 50px; text-align: center; color: var(--muted); }
+    tr:nth-child(1) .col-rank { color: var(--amber); }
+
+    .col-num { font-family: var(--ff-d); font-size: 13px; color: var(--muted); width: 45px; text-align: center; }
+    .driver-cell { display: flex; align-items: center; gap: 10px; }
+    .table-team-logo {
+      width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+    }
+    .table-team-logo img { width: 18px; height: 18px; object-fit: contain; }
+    .driver-name { font-family: var(--ff-d); font-size: 16px; font-weight: 700; color: #fff; }
+    .team-tag { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
+    .col-stat { font-family: var(--ff-d); font-size: 14px; text-align: center; width: 55px; }
+    .col-pts { font-family: var(--ff-d); font-size: 16px; font-weight: 700; color: #fff; text-align: center; width: 65px; }
+    tr:hover .col-pts { color: var(--amber); }
+
+    footer{background:#030305;border-top:1px solid var(--border);padding:40px 20px;text-align:center}
+
+    @media(max-width: 1024px) {
+      .split-championship-container { grid-template-columns: 1fr; gap: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="images/logo.png" alt="KLR" />
+      <div class="nav-logo-text">KLR <span>GT3</span></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="standings.html" class="active">Standings</a></li>
+      <li><a href="index.html">Results</a></li>
+      <li><a href="drivers.html">Drivers</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>GT3 Championship Standings</h1>
+  <p>Season 1 Official Title Leaderboards</p>
+</header>
+
+<main class="split-championship-container">
+  
+  <!-- ================= LEFT SIDE: DRIVERS ================= -->
+  <section class="championship-block-side">
+    <h2 class="championship-column-title">Drivers' <span>Championship</span></h2>
+    
+    <div class="mini-podium">
+      <!-- P2 Slot -->
+      <div class="mini-podium-card p2" style="--p-color: #006643;">
+        <div class="mp-photo-wrapper">
+          <img src="images/drivers/placeholder2.png" alt="" onerror="this.style.opacity='0';" />
+        </div>
+        <div class="mp-content">
+          <div class="mp-rank">2</div>
+          <div class="mp-name">Driver Slot 2</div>
+          <div class="mp-team">Aston Martin Racing</div>
+        </div>
+      </div>
+      
+      <!-- P1 Slot -->
+      <div class="mini-podium-card p1" style="--p-color: #e60000;">
+        <div class="mp-photo-wrapper">
+          <img src="images/drivers/placeholder1.png" alt="" onerror="this.style.opacity='0';" />
+        </div>
+        <div class="mp-content">
+          <div class="mp-rank">1</div>
+          <div class="mp-name">Driver Slot 1</div>
+          <div class="mp-team">Ferrari AF Corse</div>
+        </div>
+      </div>
+      
+      <!-- P3 Slot -->
+      <div class="mini-podium-card p3" style="--p-color: #0038a8;">
+        <div class="mp-photo-wrapper">
+          <img src="images/drivers/placeholder3.png" alt="" onerror="this.style.opacity='0';" />
+        </div>
+        <div class="mp-content">
+          <div class="mp-rank">3</div>
+          <div class="mp-name">Driver Slot 3</div>
+          <div class="mp-team">BMW M Motorsport</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="standings-table">
+        <thead>
+          <tr>
+            <th style="text-align:center;">Pos</th>
+            <th style="text-align:center;">No</th>
+            <th>Driver</th>
+            <th>Manufacturer</th>
+            <th style="text-align:center;">Wins</th>
+            <th style="text-align:center;">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic Row Layout Template: Simply duplicate or re-order these rows based on real points later -->
+          <tr>
+            <td class="col-rank">1</td>
+            <td class="col-num">--</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/ferrari.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Driver Name</div>
+              </div>
+            </td>
+            <td><span class="team-tag">Ferrari</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">0</td>
+          </tr>
+          <tr>
+            <td class="col-rank">2</td>
+            <td class="col-num">--</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/aston.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Driver Name</div>
+              </div>
+            </td>
+            <td><span class="team-tag">Aston Martin</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">0</td>
+          </tr>
+          <tr>
+            <td class="col-rank">3</td>
+            <td class="col-num">--</td>
+            <td>
+              <div class="driver-cell">
+                <div class="table-team-logo"><img src="teams/bmw.png" alt="" onerror="this.style.display='none'"/></div>
+                <div class="driver-name">Driver Name</div>
+              </div>
+            </td>
+            <td><span class="team-tag">BMW</span></td>
+            <td class="col-stat">0</td>
+            <td class="col-pts">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= RIGHT SIDE: MANUFACTURERS ================= -->
+  <section class="championship-block-side">
+    <h2 class="championship-column-title">Teams' <span>Championship</span></h2>
+    
+    <div class="constructors-showcase">
+      
+      <!-- Ferrari -->
+      <div class="constructor-showcase-card" style="--team-color: #e60000; --team-rgb: 230, 0, 0;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">1</div>
+          <div class="c-meta">
+            <div class="c-title">Ferrari AF Corse</div>
+            <div class="c-drivers">Ferrari 296 GT3</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/ferrari.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- Aston Martin -->
+      <div class="constructor-showcase-card" style="--team-color: #006643; --team-rgb: 0, 102, 67;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">2</div>
+          <div class="c-meta">
+            <div class="c-title">Aston Martin Racing</div>
+            <div class="c-drivers">Vantage AMR GT3 EVO</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/aston.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- BMW -->
+      <div class="constructor-showcase-card" style="--team-color: #0038a8; --team-rgb: 0, 56, 168;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">3</div>
+          <div class="c-meta">
+            <div class="c-title">BMW M Motorsport</div>
+            <div class="c-drivers">BMW M4 GT3</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/bmw.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- Audi -->
+      <div class="constructor-showcase-card" style="--team-color: #b30000; --team-rgb: 179, 0, 0;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">4</div>
+          <div class="c-meta">
+            <div class="c-title">Audi Sport Customer Racing</div>
+            <div class="c-drivers">R8 LMS GT3 Evo 2</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/audi.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- Corvette -->
+      <div class="constructor-showcase-card" style="--team-color: #ffcc00; --team-rgb: 255, 204, 0;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">5</div>
+          <div class="c-meta">
+            <div class="c-title">Corvette Racing</div>
+            <div class="c-drivers">Corvette Z06 GT3.R</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/corvette.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- Ford Performance -->
+      <div class="constructor-showcase-card" style="--team-color: #003399; --team-rgb: 0, 51, 153;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">6</div>
+          <div class="c-meta">
+            <div class="c-title">Ford Performance</div>
+            <div class="c-drivers">Ford Mustang GT3</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/ford.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- Lamborghini -->
+      <div class="constructor-showcase-card" style="--team-color: #009a44; --team-rgb: 0, 154, 68;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">7</div>
+          <div class="c-meta">
+            <div class="c-title">Lamborghini Squadra Corse</div>
+            <div class="c-drivers">Huracan GT3 Evo</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/lamborghini.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- McLaren -->
+      <div class="constructor-showcase-card" style="--team-color: #ff8000; --team-rgb: 255, 128, 0;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">8</div>
+          <div class="c-meta">
+            <div class="c-title">McLaren Customer Racing</div>
+            <div class="c-drivers">720S GT3 EVO</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/mclaren.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- Mercedes-AMG -->
+      <div class="constructor-showcase-card" style="--team-color: #7f7f7f; --team-rgb: 127, 127, 127;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">9</div>
+          <div class="c-meta">
+            <div class="c-title">Mercedes-AMG Motorsport</div>
+            <div class="c-drivers">Mercedes-AMG GT3 EVO</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/mercedes.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+      <!-- Porsche -->
+      <div class="constructor-showcase-card" style="--team-color: #d5001c; --team-rgb: 213, 0, 28;">
+        <div class="c-info-side">
+          <div class="c-rank-badge">10</div>
+          <div class="c-meta">
+            <div class="c-title">Porsche Motorsport</div>
+            <div class="c-drivers">Porsche 911 GT3 R</div>
+          </div>
+        </div>
+        <img src="images/gt-cars/porsche.png" alt="" class="c-car-graphic" onerror="this.style.display='none';" />
+        <div class="c-pts-side">0</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Season 1 · King League GT Racing</p>
+</footer>
+
+</body>
+</html>
