@@ -56,13 +56,29 @@
       padding: 0 32px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       height: 72px;
     }
     .nav-logo { display: flex; align-items: center; gap: 12px; }
     .nav-logo img { height: 48px; width: 48px; object-fit: contain; }
     .nav-logo-text { font-family: var(--ff-d); font-size: 26px; font-weight: 900; letter-spacing: 3px; color: #fff; text-transform: uppercase; }
     .nav-logo-text span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--ff-d);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: #fff; }
 
     /* Grand Hub Hero Section */
     .hub-hero {
@@ -120,7 +136,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-flex: flex-end;
       min-height: 480px;
       transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.45s ease, box-shadow 0.45s ease;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -174,6 +190,7 @@
       z-index: 3;
       padding: 40px;
       width: 100%;
+      margin-top: auto;
     }
 
     /* Discipline Meta Tags */
@@ -314,12 +331,15 @@
         <img src="images/New%20Project.png" alt="KLR Logo" onerror="this.style.display='none';" />
         <div class="nav-logo-text">King League <span>Racing</span></div>
       </div>
+      <ul class="nav-links">
+        <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+      </ul>
     </div>
   </nav>
 
   <main>
     <div class="hub-hero">
-      <h1>KLR DISCIPLINE <span>SELECT HUB</span></h1>
+      <h1>KLR <span>SELECT HUB</span></h1>
       <p>Choose an active category to view race calendars, standings, and results</p>
     </div>
 
