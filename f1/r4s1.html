@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Round 2 Results – KLR Season 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Flag Icons CSS for cross-OS compatibility -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
+
+  <style>
+    :root{--bg:#06060b;--surface:#0c0c14;--card:#11111f;--border:#1e1e38;--blue:#2979ff;--neon:#c6ff00;--text:#f5f5fa;--muted:#7c7c9a;--radius:8px;--ff-d:'Barlow Condensed',sans-serif;--ff-b:'Barlow',sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:15px;line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    nav{background:rgba(6,6,11,0.94);border-bottom:2px solid var(--blue);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{display:flex;align-items:center;gap:12px}
+    .nav-logo img{height:44px;width:44px;object-fit:contain}
+    .nav-logo-text{font-family:var(--ff-d);font-size:22px;font-weight:900;letter-spacing:2px;color:#fff}
+    .nav-logo-text span{color:var(--blue)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-family:var(--ff-d);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+    .nav-links a:hover,.nav-links a.active{color:#fff}
+    .utility-bar{max-width:1200px;margin:24px auto 0;padding:0 24px}
+    .btn-back{font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;border:1px solid var(--border);padding:8px 16px;border-radius:var(--radius);display:inline-flex;align-items:center;gap:8px;transition:all .2s;background:var(--surface)}
+    .btn-back:hover{border-color:#fff}
+    .race-detail-header{max-width:1200px;margin:24px auto 0;padding:0 24px}
+    .detail-panel{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius);padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+    .track-info{display:flex;align-items:center;gap:16px}
+    .track-flag{font-size:40px;line-height:1}
+    .track-title h1{font-family:var(--ff-d);font-size:32px;font-weight:900;text-transform:uppercase;line-height:1;color:#fff}
+    .track-title p{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+    .track-stats{display:flex;gap:32px;flex-wrap:wrap}
+    .stat-node{text-align:right}
+    .stat-node label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+    .stat-node .value{font-family:var(--ff-d);font-size:20px;font-weight:800;color:#fff}
+    .stat-node .value.neon{color:var(--neon)}
+    .results-container{max-width:1200px;margin:32px auto 80px;padding:0 24px}
+    .table-wrapper{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto}
+    .results-table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}
+    .results-table th{background:rgba(12,12,20,0.5);font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:14px 16px;border-bottom:2px solid var(--border)}
+    .results-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap}
+    .results-table tr:hover td{background:rgba(255,255,255,0.01)}
+    .col-pos{font-family:var(--ff-d);font-size:18px;font-weight:900;width:50px;text-align:center;color:var(--muted)}
+    .col-pos.p1{color:var(--neon)}
+    .col-pos.p2{color:#d1d5db}
+    .col-pos.p3{color:#f59e0b}
+    .col-no{font-family:var(--ff-d);font-size:14px;color:var(--muted);width:40px;text-align:center}
+    .driver-cell{display:flex;align-items:center;gap:12px}
+    .table-team-logo{width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;overflow:hidden;flex-shrink:0}
+    .table-team-logo img{width:20px;height:20px;object-fit:contain}
+    .driver-meta .name{font-family:var(--ff-d);font-size:17px;font-weight:700;color:#fff}
+    .time-cell{font-family:var(--ff-d);font-size:15px;font-weight:600}
+    .points-cell{font-family:var(--ff-d);font-size:18px;font-weight:700;color:#fff;text-align:center;width:60px}
+    .fl-badge{display:inline-flex;align-items:center;background:rgba(198,255,0,0.08);border:1px solid rgba(198,255,0,0.3);color:var(--neon);font-family:var(--ff-d);font-size:11px;font-weight:700;letter-spacing:0.5px;padding:2px 8px;border-radius:3px}
+    footer{background:#030307;border-top:1px solid var(--border);padding:40px 20px;text-align:center}
+    @media(max-width:768px){
+      .detail-panel{flex-direction:column;align-items:flex-start}
+      .track-stats{width:100%;justify-content:space-between}
+      .stat-node{text-align:left}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="images/New%20Project.png" alt="KLR" />
+      <div class="nav-logo-text">KLR <span>F1</span></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="standings.html">Standings</a></li>
+      <li><a href="index.html" class="active">Results</a></li>
+      <li><a href="drivers.html">Drivers</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="utility-bar">
+  <a href="index.html" class="btn-back">← Back to Dashboard</a>
+</div>
+
+<main class="race-detail-header">
+  <div style="max-width:1200px;margin:0 auto 18px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);position:relative;height:220px;background:#05050f;">
+    <img src="images/win/r3s1win.png" alt="Winning Car" style="width:100%;height:100%;object-fit:cover;display:block;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(6,6,11,0.95) 100%);display:flex;align-items:flex-end;padding:20px;">
+      <div>
+        <span style="font-family:var(--ff-d);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue)">Race Winner</span>
+        <h2 style="font-family:var(--ff-d);font-size:28px;font-weight:900;text-transform:uppercase;color:#fff;margin-top:2px;">???</h2>
+      </div>
+    </div>
+  </div>
+  <div class="detail-panel">
+    <div class="track-info">
+      <span class="card-flag-wrap fi fi-bh"></span>
+      <div class="track-title">
+        <h1>Bahrain Grand Prix</h1>
+        <p>Season 1 — Round 4 Results</p>
+      </div>
+    </div>
+    <div class="track-stats">
+      <div class="stat-node"><label>Race Distance</label><div class="value">???</div></div>
+      <div class="stat-node"><label>Track Condition</label><div class="value">Dry</div></div>
+      <div class="stat-node"><label>Fastest Lap</label><div class="value neon">???</div></div>
+    </div>
+  </div>
+</main>
+
+<div class="results-container">
+  <div class="table-wrapper">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th style="text-align:center;">Pos</th>
+          <th style="text-align:center;">No</th>
+          <th>Driver</th>
+          <th>Team Tag</th>
+          <th>Time / Interval</th>
+          <th>Fastest Lap</th>
+          <th style="text-align:center;">Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- P1 -->
+        <tr>
+          <td class="col-pos p1">1</td>
+          <td class="col-no">72</td>
+          <td>
+            <div class="driver-cell">
+              <div class="table-team-logo"><img src="teams/mercedes.png" alt="Mercedes" onerror="this.style.display='none'"/></div>
+              <div class="driver-meta"><div class="name">Ash BARTLAM</div></div>
+            </div>
+          </td>
+          <td><span class="team-tag">Mercedes</span></td>
+          <td class="time-cell" style="color:var(--neon)">???</td>
+          <td class="time-cell" style="color:var(--muted)">???</td>
+          <td class="points-cell">25</td>
+        </tr>
+        <!-- P2 -->
+        <tr>
+          <td class="col-pos p2">2</td>
+          <td class="col-no">5</td>
+          <td>
+            <div class="driver-cell">
+              <div class="table-team-logo"><img src="teams/kick.png" alt="McLaren" onerror="this.style.display='none'"/></div>
+              <div class="driver-meta"><div class="name">Roman FERNANDEZ</div></div>
+            </div>
+          </td>
+          <td><span class="team-tag">Sauber</span></td>
+          <td class="time-cell">???</td>
+          <td><span class="fl-badge">???</span></td>
+          <td class="points-cell">18</td>
+        </tr>
+        <!-- P3 -->
+        <tr>
+          <td class="col-pos p3">3</td>
+          <td class="col-no">25</td>
+          <td>
+            <div class="driver-cell">
+              <div class="table-team-logo"><img src="teams/kick.png" alt="Red Bull" onerror="this.style.display='none'"/></div>
+              <div class="driver-meta"><div class="name">Finn BEAVINGTON CREAN</div></div>
+            </div>
+          </td>
+          <td><span class="team-tag">Red Bull</span></td>
+          <td class="time-cell">???</td>
+          <td class="time-cell" style="color:var(--muted)">???</td>
+          <td class="points-cell">15</td>
+        </tr>
+        <!-- P4 -->
+        <tr>
+          <td class="col-pos">4</td>
+          <td class="col-no">90</td>
+          <td>
+            <div class="driver-cell">
+              <div class="table-team-logo"><img src="teams/williams.png" alt="Red Bull" onerror="this.style.display='none'"/></div>
+              <div class="driver-meta"><div class="name">Lucas THOMSEN</div></div>
+            </div>
+          </td>
+          <td><span class="team-tag">Williams</span></td>
+          <td class="time-cell">+1 LAP</td>
+          <td class="time-cell" style="color:var(--muted)">1:33.405</td>
+          <td class="points-cell">12</td>
+        </tr>
+        <!-- P5 -->
+        <tr>
+          <td class="col-pos">5</td>
+          <td class="col-no">20</td>
+          <td>
+            <div class="driver-cell">
+              <div class="table-team-logo"><img src="teams/mclaren.png" alt="Williams" onerror="this.style.display='none'"/></div>
+              <div class="driver-meta"><div class="name">Alleen TULO</div></div>
+            </div>
+          </td>
+          <td><span class="team-tag">McLaren</span></td>
+          <td class="time-cell">+3 LAP</td>
+          <td class="time-cell" style="color:var(--muted)">1:40.493</td>
+          <td class="points-cell">10</td>
+        </tr>
+        <!-- P6 -->
+        <tr>
+          <td class="col-pos">6</td>
+          <td class="col-no">30</td>
+          <td>
+            <div class="driver-cell">
+              <div class="table-team-logo"><img src="teams/racing%20bulls.png" alt="VCARB" onerror="this.style.display='none'"/></div>
+              <div class="driver-meta"><div class="name">James VAN RENSBURG</div></div>
+            </div>
+          </td>
+          <td><span class="team-tag">VCARB</span></td>
+          <td class="time-cell">DNS</td>
+          <td class="time-cell" style="color:var(--muted)">N/A</td>
+          <td class="points-cell">0</td>
+        </tr>
+        <!-- P7 -->
+        <tr>
+          <td class="col-pos">7</td>
+          <td class="col-no">42</td>
+          <td>
+            <div class="driver-cell">
+              <div class="table-team-logo"><img src="teams/haas.png" alt="Haas" onerror="this.style.display='none'"/></div>
+              <div class="driver-meta"><div class="name">Michael VAN LOGGERENBURG</div></div>
+            </div>
+          </td>
+          <td><span class="team-tag">Haas</span></td>
+          <td class="time-cell">DNS</td>
+          <td class="time-cell" style="color:var(--muted)">N/A</td>
+          <td class="points-cell">0</td>
+        </tr>
+
+        <tr>
+          <td class="col-pos">8</td>
+          <td class="col-no">69</td>
+          <td>
+            <div class="driver-cell">
+              <div class="table-team-logo"><img src="teams/redbull.png" alt="Haas" onerror="this.style.display='none'"/></div>
+              <div class="driver-meta"><div class="name">Austin LAUDER</div></div>
+            </div>
+          </td>
+          <td><span class="team-tag">Red Bull</span></td>
+          <td class="time-cell">DNS</td>
+          <td class="time-cell" style="color:var(--muted)">N/A</td>
+          <td class="points-cell">0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  <p>Season 1 · King League Racing</p>
+</footer>
+
+</body>
+</html>
