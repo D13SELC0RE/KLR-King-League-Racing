@@ -14,6 +14,7 @@
       --border: #1e1e38;
       --blue: #2979ff;
       --neon: #c6ff00;
+      --green: #105310;
       --gt-orange: #ff5252;
       --text: #f5f5fa;
       --muted: #7c7c9a;
@@ -209,6 +210,7 @@
     }
     .f1-branch .branch-tag { color: var(--blue); border: 1px solid rgba(41,121,255,0.3); }
     .gt-branch .branch-tag { color: var(--gt-orange); border: 1px solid rgba(255,82,82,0.3); }
+    .wec-branch .branch-tag { color: var(--green); border: 1px solid green; }
 
     .branch-title {
       font-family: var(--ff-d);
@@ -282,18 +284,22 @@
     }
     .branch-card.f1-branch:hover { border-color: var(--blue); }
     .branch-card.gt-branch:hover { border-color: var(--gt-orange); }
+    .branch-card.wec-branch:hover { border-color: var(--green); }
+
 
     .branch-card:hover .card-screenshot-bg img {
       transform: scale(1.06);
     }
     .f1-branch:hover .card-screenshot-bg img { filter: brightness(0.48) contrast(1.08) saturate(1.0); }
     .gt-branch:hover .card-screenshot-bg img { filter: brightness(0.48) contrast(1.08) saturate(1.0); }
+    .wec-branch:hover .card-screenshot-bg img { filter: brightness(0.48) contrast(1.08) saturate(1.0); }
 
     .branch-card:hover .branch-glow { opacity: 0.28; transform: scale(1.15); }
 
     /* Button transformations on hovering parent card */
     .f1-branch:hover .branch-btn { background: var(--blue); border-color: var(--blue); box-shadow: 0 4px 20px rgba(41,121,255,0.4); }
     .gt-branch:hover .branch-btn { background: var(--gt-orange); border-color: var(--gt-orange); box-shadow: 0 4px 20px rgba(255,82,82,0.4); }
+    .wec-branch:hover .branch-btn { background: var(--green); border-color: var(--green); box-shadow: 0 4px 20px #3ec03e; }
     .branch-card:hover .branch-btn svg { transform: translateX(5px); }
 
     /* Bottom Checker Strip decoration */
@@ -353,7 +359,7 @@
         <div class="branch-glow"></div>
         
         <div class="branch-content-wrapper">
-          <div class="branch-tag">Open Wheel</div>
+          <div class="branch-tag">F1 25</div>
           <h2 class="branch-title">Formula 1 Branch</h2>
           <p class="branch-desc">High downforce weapon racing. Master sharp apexes, grid battles, and clinical overtaking loops under the premier formula category banner.</p>
           
@@ -378,7 +384,7 @@
         <div class="branch-glow"></div>
         
         <div class="branch-content-wrapper">
-          <div class="branch-tag">Sports Cars</div>
+          <div class="branch-tag">Assetto Corsa Competizione</div>
           <h2 class="branch-title">GT3 Branch</h2>
           <p class="branch-desc">Agile multi-manufacturer production sports car grids. Heavy paint-rubbing, aggressive braking configurations, and signature championship circuits.</p>
           
@@ -395,6 +401,30 @@
         </div>
       </a>
 
+<a href="wec/index.html" class="branch-card wec-branch">
+        <div class="card-screenshot-bg">
+          <img src="wec/images/wec_bg.jpg" alt="GT3 Championship Racing" onerror="this.src='images/win/r2s1win.png';" />
+        </div>
+
+        <div class="branch-glow"></div>
+
+        <div class="branch-content-wrapper">
+          <div class="branch-tag">Forza motorsport</div>
+          <h2 class="branch-title">WEC Branch</h2>
+          <p class="branch-desc">Established in 2012 by the FIA and the ACO, the series features futuristic prototypes and race-modified road cars sharing the same track to test speed, strategy, and mechanical reliability</p>
+
+          <div class="branch-stats-preview">
+            <div class="b-stat"><span class="b-label">Status</span><span class="b-value" style="color: #00e5ff">UPCOMING</span></div>
+            <div class="b-stat"><span class="b-label">Season</span><span class="b-value">S1</span></div>
+            <div class="b-stat"><span class="b-label">Rounds</span><span class="b-value">TBD</span></div>
+          </div>
+
+          <div class="branch-btn">
+            Enter GT3 Dashboard
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.87l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </div>
+        </div>
+      </a>
     </div>
   </main>
 
