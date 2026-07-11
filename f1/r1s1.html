@@ -9,6 +9,88 @@
 
   
   <style>
+        /* Race Gallery Section */
+    .gallery-container {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .gallery-header {
+      font-family: var(--ff-d);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gallery-header::after {
+      content: '';
+      flex-grow: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16 / 10;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    /* Hover Effects */
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Optional subtle caption styling inside the image */
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(6, 6, 11, 0.85) 100%);
+      padding: 16px 20px;
+      font-family: var(--ff-d);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+}
+
     :root{--bg:#06060b;--surface:#0c0c14;--card:#11111f;--border:#1e1e38;--blue:#2979ff;--neon:#c6ff00;--text:#f5f5fa;--muted:#7c7c9a;--radius:8px;--ff-d:'Barlow Condensed',sans-serif;--ff-b:'Barlow',sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:15px;line-height:1.5}
@@ -200,6 +282,35 @@
   </div>
 </div>
 
+<!-- Race Gallery -->
+<div class="gallery-container">
+  <div class="gallery-header">Race Photos</div>
+
+  <div class="gallery-grid">
+    <!-- Image 1 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1518899146872983573/F1_25_photo_20260623_202518.png?ex=6a535390&is=6a520210&hm=5a8092f37dfb033b5cd3c0ff5ec0ae125e148bda2e899f1183faf749da1b1595&=&format=webp&quality=lossless&width=1552&height=873" alt="Race Highlight 1" />
+      <div class="gallery-caption">Turn 1 Action between 72 and 25</div>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1518899145396588555/F1_25_photo_20260623_202034.png?ex=6a535390&is=6a520210&hm=f047393ec1f788eabd730f3d135ec18f7853bb6b8f21b1c3cff502a2844303a2&=&format=webp&quality=lossless&width=1552&height=873" alt="Race Highlight 2" />
+      <div class="gallery-caption">Podium Battle</div>
+    </div>
+
+    <!-- Image 3 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1518899148814942209/F1_25_photo_20260622_182021.png?ex=6a535390&is=6a520210&hm=7793e8aabd27eb5d85b793d58d10a0225937b5c9f7942856537ba8f54c21adeb&=&format=webp&quality=lossless&width=1552&height=873" alt="Race Highlight 3" />
+      <div class="gallery-caption">Winner</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1518899145799106560/F1_25_photo_20260623_202140.png?ex=6a535390&is=6a520210&hm=fc070725b20ef080d5862537011b96ccd4cf9d7527538c1dda0643b534a53d36&=&format=webp&quality=lossless&width=1552&height=873" alt="Race Highlight 2" />
+      <div class="gallery-caption">Penalised Crash</div>
+    </div>
+  </div>
+</div>
 <footer>
   <p>Season 1 · King League Racing</p>
 </footer>

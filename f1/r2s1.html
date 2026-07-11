@@ -10,6 +10,88 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
   
   <style>
+     /* Race Gallery Section */
+    .gallery-container {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .gallery-header {
+      font-family: var(--ff-d);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gallery-header::after {
+      content: '';
+      flex-grow: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16 / 10;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    /* Hover Effects */
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Optional subtle caption styling inside the image */
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(6, 6, 11, 0.85) 100%);
+      padding: 16px 20px;
+      font-family: var(--ff-d);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+}
+
     :root{--bg:#06060b;--surface:#0c0c14;--card:#11111f;--border:#1e1e38;--blue:#2979ff;--neon:#c6ff00;--text:#f5f5fa;--muted:#7c7c9a;--radius:8px;--ff-d:'Barlow Condensed',sans-serif;--ff-b:'Barlow',sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:15px;line-height:1.5}
@@ -232,6 +314,36 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- Race Gallery -->
+<div class="gallery-container">
+  <div class="gallery-header">Race Photos</div>
+
+  <div class="gallery-grid">
+    <!-- Image 1 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1520343671147597925/F1_25_photo_20260627_201032.png?ex=6a534ee1&is=6a51fd61&hm=ce0f9c3975fd6f64a62afe7a01e59ed0ac1957dc8dc06c78579be89a88130537&=&format=webp&quality=lossless&width=1552&height=873" alt="Race Highlight 1" />
+      <div class="gallery-caption">Turn 1 Action between 5 and 72</div>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1520343672040722504/F1_25_photo_20260627_201214.png?ex=6a534ee2&is=6a51fd62&hm=2fc8f9d3b6554f8eb7c122e1d87590dab57a3e9187691b9b1340e6f66f27fa1a&=&format=webp&quality=lossless&width=1552&height=873" alt="Race Highlight 2" />
+      <div class="gallery-caption">Car 30 lock up</div>
+    </div>
+
+    <!-- Image 3 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1520343672942755940/F1_25_photo_20260627_201422.png?ex=6a534ee2&is=6a51fd62&hm=ea243ec8f7623d4d03f51263c973aa305f027d317e9c4bc977977392c585519f&=&format=webp&quality=lossless&width=1552&height=873" alt="Race Highlight 3" />
+      <div class="gallery-caption">Top 3 Fight</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1520343672456220672/F1_25_photo_20260627_201304.png?ex=6a534ee2&is=6a51fd62&hm=28f54870ef1dd92a868ea9d704ca9a87b2ad22cfc542a6c63a54abe1e4d5a182&=&format=webp&quality=lossless&width=1552&height=873" alt="Race Highlight 2" />
+      <div class="gallery-caption">Favourite Debut of the Season</div>
+    </div>
   </div>
 </div>
 

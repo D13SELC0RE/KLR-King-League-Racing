@@ -10,6 +10,88 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
   
   <style>
+     /* Race Gallery Section */
+    .gallery-container {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .gallery-header {
+      font-family: var(--ff-d);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gallery-header::after {
+      content: '';
+      flex-grow: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16 / 10;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    /* Hover Effects */
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Optional subtle caption styling inside the image */
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(6, 6, 11, 0.85) 100%);
+      padding: 16px 20px;
+      font-family: var(--ff-d);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+}
+
     :root{--bg:#06060b;--surface:#0c0c14;--card:#11111f;--border:#1e1e38;--blue:#2979ff;--neon:#c6ff00;--text:#f5f5fa;--muted:#7c7c9a;--radius:8px;--ff-d:'Barlow Condensed',sans-serif;--ff-b:'Barlow',sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:15px;line-height:1.5}
@@ -247,6 +329,36 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+  <!-- Race Gallery -->
+<div class="gallery-container">
+  <div class="gallery-header">Race Photos</div>
+
+  <div class="gallery-grid">
+    <!-- Image 1 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1523249649564258374/image.jpg?ex=6a52ac89&is=6a515b09&hm=7476100ee9b86c287d28edd3fb2b4e17912109360f5526da597f9e7fb90b1af8&=&format=webp&width=1552&height=873" alt="Race Highlight 1" />
+      <div class="gallery-caption">Car 20 debuts</div>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1523249648511221770/image.jpg?ex=6a52ac88&is=6a515b08&hm=0859d902dfc8007edb176b274f3a4ff8b35390e4fa0732a7b05884d2091d3ec9&=&format=webp&width=1552&height=873" alt="Race Highlight 2" />
+      <div class="gallery-caption">Lap 1 Chaos</div>
+    </div>
+
+    <!-- Image 3 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1523249649127915520/image.jpg?ex=6a52ac88&is=6a515b08&hm=2a00b6c65e61e0e30eb5ca0d82fc3d25fbf2bc9f2ac5f9789d90d50e3c2ae7c7&=&format=webp&width=1552&height=873" alt="Race Highlight 3" />
+      <div class="gallery-caption">Kick Sauber debut</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1523249648251305984/image.jpg?ex=6a52ac88&is=6a515b08&hm=f520c74b10d61a9aa326aaf3fafa504a0a3425b1771e91250e7b493cd7f3bb9e&=&format=webp&width=1552&height=873" alt="Race Highlight 2" />
+      <div class="gallery-caption">Iconic Fights</div>
+    </div>
   </div>
 </div>
 

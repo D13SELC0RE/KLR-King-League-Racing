@@ -10,6 +10,88 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
 
   <style>
+     /* Race Gallery Section */
+    .gallery-container {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .gallery-header {
+      font-family: var(--ff-d);
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gallery-header::after {
+      content: '';
+      flex-grow: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16 / 10;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    /* Hover Effects */
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Optional subtle caption styling inside the image */
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(6, 6, 11, 0.85) 100%);
+      padding: 16px 20px;
+      font-family: var(--ff-d);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+}
+
     :root{--bg:#06060b;--surface:#0c0c14;--card:#11111f;--border:#1e1e38;--blue:#2979ff;--neon:#c6ff00;--text:#f5f5fa;--muted:#7c7c9a;--radius:8px;--ff-d:'Barlow Condensed',sans-serif;--ff-b:'Barlow',sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:15px;line-height:1.5}
@@ -173,7 +255,7 @@
         <!-- P4 -->
         <tr>
           <td class="col-pos">4</td>
-          <td class="col-no">90</td>
+          <td class="col-no">30</td>
           <td>
             <div class="driver-cell">
               <div class="table-team-logo"><img src="teams/racing%20bulls.png" alt="Red Bull" onerror="this.style.display='none'"/></div>
@@ -203,7 +285,7 @@
         <!-- P6 -->
         <tr>
           <td class="col-pos">6</td>
-          <td class="col-no">30</td>
+          <td class="col-no">25</td>
           <td>
             <div class="driver-cell">
               <div class="table-team-logo"><img src="teams/kick.png" alt="VCARB" onerror="this.style.display='none'"/></div>
@@ -247,6 +329,32 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+    <!-- Race Gallery -->
+<div class="gallery-container">
+  <div class="gallery-header">Race Photos</div>
+
+  <div class="gallery-grid">
+    <!-- Image 1 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1525418814253301841/cd156800-c27b-4151-8add-dce631f63e84.jpg?ex=6a53507a&is=6a51fefa&hm=eaab4e6c085560b590bcd02ead8079296876efccef0dc7d72bd52cbd4b3eeb45&=&format=webp&width=1552&height=873" alt="Race Highlight 1" />
+      <div class="gallery-caption">Lap 1 Lineup</div>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1525418814987178155/e3f9fdf6-373c-4e2c-8905-195b80d70947.jpg?ex=6a53507a&is=6a51fefa&hm=8ac84430bbff3f95479c9179a2ddb35429c8b65d0921a9a4b801103e95adea9e&=&format=webp&width=1552&height=873" alt="Race Highlight 2" />
+      <div class="gallery-caption">Car 72 hunting P1</div>
+    </div>
+
+    <!-- Image 3 -->
+    <div class="gallery-item">
+      <img src="https://media.discordapp.net/attachments/1518460975521599588/1525418814655823922/0979601d-61c9-440a-8426-fecb054b8134.jpg?ex=6a53507a&is=6a51fefa&hm=40e8f51b15d1a48cd5b0f1e4cee6832155f0b7bcad361e49fcc481625aa8b3bc&=&format=webp&width=1552&height=873" alt="Race Highlight 3" />
+      <div class="gallery-caption">Car 90 takes P3</div>
+    </div>
+
   </div>
 </div>
 
