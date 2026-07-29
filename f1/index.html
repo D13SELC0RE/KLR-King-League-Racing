@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Race Results – KLR Season 1</title>
+  <title>Race Results – KLR Season 2</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   
   <!-- Flag Icons CSS for cross-OS compatibility -->
@@ -53,7 +53,6 @@
       justify-content: space-between;
       height: 64px;
     }
-    /* Logo structural adjustments for anchor integration */
     .nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
     .nav-logo img { height: 44px; width: 44px; object-fit: contain; }
     .nav-logo-text { font-family: var(--ff-d); font-size: 22px; font-weight: 900; letter-spacing: 2px; color: #fff; }
@@ -62,7 +61,7 @@
     .nav-links a { font-family: var(--ff-d); font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); transition: color .2s; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
 
-    /* Next Race Countdown Banner Style */
+    /* Dynamic Next Race Countdown Banner */
     .countdown-banner { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 24px; }
     .countdown-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
     .countdown-info { display: flex; align-items: center; gap: 16px; }
@@ -104,9 +103,12 @@
     .race-grid { max-width: 1200px; margin: 0 auto 80px; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
     .race-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color .2s, transform .2s; position: relative; }
     .race-card:hover { border-color: var(--blue); transform: translateY(-2px); }
-    .race-card.upcoming { opacity: .5; }
-    .race-card.upcoming .card-body::after { content: 'UPCOMING'; position: absolute; top: 12px; right: 12px; background: var(--border); color: var(--muted); font-family: var(--ff-d); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 8px; border-radius: 3px; }
     
+    /* Upcoming Card Styling */
+    .race-card.upcoming { opacity: .65; }
+    .race-card.upcoming .card-body::after { content: 'UPCOMING'; position: absolute; top: 12px; right: 12px; background: var(--border); color: var(--muted); font-family: var(--ff-d); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 8px; border-radius: 3px; }
+    .race-card.upcoming:hover { opacity: 1; }
+
     .card-header { position: relative; height: 120px; overflow: hidden; background: #090911; }
     .card-track-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.45); transition: filter .3s; }
     .race-card:hover .card-track-img { filter: brightness(.55); }
@@ -134,7 +136,7 @@
     .card-footer { border-top: 1px solid var(--border); padding: 12px 16px; display: flex; justify-content: flex-end; background: rgba(0,0,0,0.1); }
     .btn-results { font-family: var(--ff-d); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; border: 1px solid var(--border); padding: 6px 16px; border-radius: 4px; transition: all .2s; background: rgba(255,255,255,0.02); }
     .btn-results:hover { background: #fff; color: #000; border-color: #fff; }
-    .btn-upcoming { font-family: var(--ff-d); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+    .btn-upcoming { font-family: var(--ff-d); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); padding: 6px 0; }
     
     footer { background: #030307; border-top: 1px solid var(--border); padding: 40px 20px; text-align: center; }
     .footer-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 10px; }
@@ -155,7 +157,6 @@
 
 <nav>
   <div class="nav-inner">
-    <!-- Wrapped logo inside a link referencing the branch selector entry point -->
     <a href="../index.html" class="nav-logo">
       <img src="images/New%20Project.png" alt="KLR" />
       <div class="nav-logo-text">KLR <span>F1</span></div>
@@ -172,10 +173,10 @@
 <div class="countdown-banner">
   <div class="countdown-inner">
     <div class="countdown-info">
-      <span class="countdown-flag fi fi-us"></span>
+      <span class="countdown-flag fi fi-ca"></span>
       <div class="countdown-label">
-        <h3>Round 5: Miami</h3>
-        <p>Miami International Circuit — Next Race Weekend</p>
+        <h3>Round 1: Canada</h3>
+        <p>Circuit Gilles-Villeneuve — Season Launch</p>
       </div>
     </div>
     <div class="countdown-timer-wrap">
@@ -191,7 +192,7 @@
   <div class="hero-bg"></div>
   <div class="hero-content">
     <div class="hero-logo-wrap"><img src="images/New%20Project.png" alt="KLR Logo" /></div>
-    <h1>Season <em>1</em></h1>
+    <h1>Season <em>2</em></h1>
     <div class="hero-sub">Race Calendar &amp; Podiums</div>
   </div>
 </div>
@@ -200,7 +201,8 @@
 <div class="controls-bar">
   <span class="controls-label">Season</span>
   <select class="season-dropdown" onchange="switchSeason(this.value)">
-    <option value="1" selected>Season 1 — Current</option>
+    <option value="2" selected>Season 2 - Current</option>
+    <option value="1">Season 1</option>
   </select>
 </div>
 
@@ -208,22 +210,21 @@
   <div class="season-card">
     <div class="meta-block">
       <label>Season</label>
-      <div class="value blue">Season 1</div>
-      <div class="sub">KLR Inaugural</div>
+      <div class="value blue">Season 2</div>
+      <div class="sub">KLR Championship</div>
     </div>
     <div class="meta-block">
       <label>Total Rounds</label>
-      <div class="value">8</div>
+      <div class="value">7</div>
       <div class="sub">Planned</div>
     </div>
     <div class="meta-block">
       <label>Season Start</label>
-      <div class="value">23rd June 2026</div>
+      <div class="value">TBD</div>
     </div>
     <div class="meta-block">
       <label>Driver Champion</label>
       <div class="value neon">TBD</div>
-      <div class="sub">In progress</div>
     </div>
     <div class="meta-block">
       <label>Team Champion</label>
@@ -232,22 +233,22 @@
   </div>
 </div>
 
-<div class="section-header"><h2>Race Results — Season 1</h2></div>
+<div class="section-header"><h2>Race Results — Season 2</h2></div>
 
 <div class="race-grid">
 
   <!-- ROUND 1 -->
   <div class="race-card">
     <div class="card-header">
-      <img class="card-track-img" src="images/win/r1s1win.png" alt="Australia" />
+      <img class="card-track-img" src="images/win/r1s2win.png" alt="Australia" onerror="this.src='images/placeholder-track.jpg'" />
       <div class="card-header-overlay">
         <div class="card-top-row">
           <span class="round-badge">ROUND 1</span>
-          <span class="race-date">23rd June 2026</span>
+          <span class="race-date">TBD 2026</span>
         </div>
         <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-au"></span>
-          <div><div class="race-circuit">Albert Park</div><div class="race-location">Australia</div></div>
+          <span class="card-flag-wrap fi fi-ca"></span>
+          <div><div class="race-circuit">Circuit Gilles-Villeneuve</div><div class="race-location">Canada</div></div>
         </div>
       </div>
     </div>
@@ -255,39 +256,39 @@
       <div class="podium">
         <div class="podium-row">
           <div class="pos p1">1</div>
-          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">BARTLAM</div>
-          <span class="team-tag">Mercedes</span>
+          <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">TBD</div>
+          <span class="team-tag">Team</span>
         </div>
         <div class="podium-row">
           <div class="pos p2">2</div>
-          <div class="team-logo-wrap"><img src="teams/mclaren.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">FERNANDEZ</div>
-          <span class="team-tag">McLaren</span>
+          <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">TBD</div>
+          <span class="team-tag">Team</span>
         </div>
         <div class="podium-row">
           <div class="pos p3">3</div>
-          <div class="team-logo-wrap"><img src="teams/racing%20bulls.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">VAN RENSBURG</div>
-          <span class="team-tag">VCARB</span>
+          <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
+          <div class="driver-name">TBD</div>
+          <span class="team-tag">Team</span>
         </div>
       </div>
     </div>
-    <div class="card-footer"><a class="btn-results" href="r1s1.html">View Results</a></div>
+    <div class="card-footer"><a class="btn-results" href="r1s2.html">View Results</a></div>
   </div>
 
   <!-- ROUND 2 -->
-  <div class="race-card">
+  <div class="race-card upcoming">
     <div class="card-header">
-      <img class="card-track-img" src="images/win/r2s1win.png" alt="China" />
+      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
       <div class="card-header-overlay">
         <div class="card-top-row">
           <span class="round-badge">ROUND 2</span>
-          <span class="race-date">27th June 2026</span>
+          <span class="race-date">TBD 2026</span>
         </div>
         <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-cn"></span>
-          <div><div class="race-circuit">Shanghai Circuit</div><div class="race-location">China</div></div>
+          <span class="card-flag-wrap fi fi-at"></span>
+          <div><div class="race-circuit">Red bull Ring</div><div class="race-location">Austria</div></div>
         </div>
       </div>
     </div>
@@ -295,36 +296,33 @@
       <div class="podium">
         <div class="podium-row">
           <div class="pos p1">1</div>
-          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">BARTLAM</div><span class="team-tag">Mercedes</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
         <div class="podium-row">
           <div class="pos p2">2</div>
-          <div class="team-logo-wrap"><img src="teams/mclaren.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">FERNANDEZ</div><span class="team-tag">McLaren</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
         <div class="podium-row">
           <div class="pos p3">3</div>
-          <div class="team-logo-wrap"><img src="teams/redbull.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">BEAVINGTON CREAN</div><span class="team-tag">Red Bull</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
       </div>
     </div>
-    <div class="card-footer"><a class="btn-results" href="r2s1.html">View Results</a></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
   </div>
 
   <!-- ROUND 3 -->
-  <div class="race-card">
+  <div class="race-card upcoming">
     <div class="card-header">
-      <img class="card-track-img" src="images/win/r3s1win.png" alt="China" />
+      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
       <div class="card-header-overlay">
         <div class="card-top-row">
           <span class="round-badge">ROUND 3</span>
-          <span class="race-date">5th July 2026</span>
+          <span class="race-date">TBD 2026</span>
         </div>
         <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-jp"></span>
-          <div><div class="race-circuit">Suzuka Circuit</div><div class="race-location">Japan</div></div>
+          <span class="card-flag-wrap fi fi-gb"></span>
+          <div><div class="race-circuit">Silverstone Circuit</div><div class="race-location">United Kingdom</div></div>
         </div>
       </div>
     </div>
@@ -332,36 +330,33 @@
       <div class="podium">
         <div class="podium-row">
           <div class="pos p1">1</div>
-          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">BARTLAM</div><span class="team-tag">Mercedes</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
         <div class="podium-row">
           <div class="pos p2">2</div>
-          <div class="team-logo-wrap"><img src="teams/kick.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">FERNANDEZ</div><span class="team-tag">Kick Sauber</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
         <div class="podium-row">
           <div class="pos p3">3</div>
-          <div class="team-logo-wrap"><img src="teams/redbull.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">BEVINGTON CREAN</div><span class="team-tag">Red Bull</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
       </div>
     </div>
-    <div class="card-footer"><a class="btn-results" href="r3s1.html">View Results</a></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
   </div>
 
   <!-- ROUND 4 -->
-  <div class="race-card">
+  <div class="race-card upcoming">
     <div class="card-header">
-      <img class="card-track-img" src="images/win/r4s1win.png" alt="China" />
+      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
       <div class="card-header-overlay">
         <div class="card-top-row">
           <span class="round-badge">ROUND 4</span>
-          <span class="race-date">11th July 2026</span>
+          <span class="race-date">TBD 2026</span>
         </div>
         <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-bh"></span>
-          <div><div class="race-circuit">Sakhir Circuit</div><div class="race-location">BAHRAIN</div></div>
+          <span class="card-flag-wrap fi fi-be"></span>
+          <div><div class="race-circuit">Spa-Francorchamps</div><div class="race-location">Belgium</div></div>
         </div>
       </div>
     </div>
@@ -369,36 +364,33 @@
       <div class="podium">
         <div class="podium-row">
           <div class="pos p1">1</div>
-          <div class="team-logo-wrap"><img src="teams/kick.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">FERNANDEZ</div><span class="team-tag">Kick Sauber</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
         <div class="podium-row">
           <div class="pos p2">2</div>
-          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">BARTLAM</div><span class="team-tag">Mercedes</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
         <div class="podium-row">
           <div class="pos p3">3</div>
-          <div class="team-logo-wrap"><img src="teams/williams.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">THOMSEN</div><span class="team-tag">Williams</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
       </div>
     </div>
-    <div class="card-footer"><a class="btn-results" href="r4s1.html">View Results</a></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
   </div>
 
-   <!-- ROUND 5 -->
-  <div class="race-card">
+  <!-- ROUND 5 -->
+  <div class="race-card upcoming">
     <div class="card-header">
-      <img class="card-track-img" src="images/win/r5s1win.jpg" alt="China" />
+      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
       <div class="card-header-overlay">
         <div class="card-top-row">
           <span class="round-badge">ROUND 5</span>
-          <span class="race-date">14th July 2026</span>
+          <span class="race-date">TBD 2026</span>
         </div>
         <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-us"></span>
-          <div><div class="race-circuit">Miami International Circuit</div><div class="race-location">Miami</div></div>
+          <span class="card-flag-wrap fi fi-nl"></span>
+          <div><div class="race-circuit">Zandervoort</div><div class="race-location">Netherlands</div></div>
         </div>
       </div>
     </div>
@@ -406,52 +398,87 @@
       <div class="podium">
         <div class="podium-row">
           <div class="pos p1">1</div>
-          <div class="team-logo-wrap"><img src="teams/williams.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">THOMSEN</div><span class="team-tag">Williams</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
         <div class="podium-row">
           <div class="pos p2">2</div>
-          <div class="team-logo-wrap"><img src="teams/mercedes.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">BARTLAM</div><span class="team-tag">Mercedes</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
         <div class="podium-row">
           <div class="pos p3">3</div>
-          <div class="team-logo-wrap"><img src="teams/racing%20bulls.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">VAN RENSBURG</div><span class="team-tag">VCARB</span>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
         </div>
       </div>
     </div>
-    <div class="card-footer"><a class="btn-results" href="r5s1.html">View Results</a></div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
+  </div>
+
+  <!-- ROUND 6 -->
+  <div class="race-card upcoming">
+    <div class="card-header">
+      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
+      <div class="card-header-overlay">
+        <div class="card-top-row">
+          <span class="round-badge">ROUND 6</span>
+          <span class="race-date">TBD 2026</span>
+        </div>
+        <div class="card-bottom-row">
+          <span class="card-flag-wrap fi fi-it"></span>
+          <div><div class="race-circuit">Monza</div><div class="race-location">Italy</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="podium">
+        <div class="podium-row">
+          <div class="pos p1">1</div>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
+        </div>
+        <div class="podium-row">
+          <div class="pos p2">2</div>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
+        </div>
+        <div class="podium-row">
+          <div class="pos p3">3</div>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
   </div>
 
   <!-- ROUND 7 -->
   <div class="race-card upcoming">
-    <div class="card-header"><div class="card-header-overlay">
-      <div class="card-top-row"><span class="round-badge">ROUND 6</span><span class="race-date">TBD</span></div>
-      <div class="card-bottom-row"><span class="card-flag-wrap fi fi-it"></span><div><div class="race-circuit">Autodromo Imola</div><div class="race-location">Imola</div></div></div>
-    </div></div>
-    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-  </div>
-
-  <!-- ROUND 8 -->
-  <div class="race-card upcoming">
-    <div class="card-header"><div class="card-header-overlay">
-      <div class="card-top-row"><span class="round-badge">ROUND 7</span><span class="race-date">TBD</span></div>
-      <div class="card-bottom-row"><span class="card-flag-wrap fi fi-mc"></span><div><div class="race-circuit">Circuit de Monaco</div><div class="race-location">Monaco</div></div></div>
-    </div></div>
-    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
-  </div>
-
-  <!-- ROUND 10 -->
-  <div class="race-card upcoming">
-    <div class="card-header"><div class="card-header-overlay">
-      <div class="card-top-row"><span class="round-badge">ROUND 8</span><span class="race-date">TBD</span></div>
-      <div class="card-bottom-row"><span class="card-flag-wrap fi fi-es"></span><div><div class="race-circuit">Circuit de Barcelona</div><div class="race-location">Spain</div></div></div>
-    </div></div>
-    <div class="card-body"><div class="podium"><div class="podium-row"><div class="pos p1">1</div><div class="driver-name">—</div></div></div></div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming</span></div>
+    <div class="card-header">
+      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
+      <div class="card-header-overlay">
+        <div class="card-top-row">
+          <span class="round-badge">ROUND 7</span>
+          <span class="race-date">TBD 2026</span>
+        </div>
+        <div class="card-bottom-row">
+          <span class="card-flag-wrap fi fi-az"></span>
+          <div><div class="race-circuit">Baku</div><div class="race-location">Azerbaijan</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="podium">
+        <div class="podium-row">
+          <div class="pos p1">1</div>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
+        </div>
+        <div class="podium-row">
+          <div class="pos p2">2</div>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
+        </div>
+        <div class="podium-row">
+          <div class="pos p3">3</div>
+          <div class="driver-name" style="color: var(--muted);">TBD</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
   </div>
 
 </div>
@@ -461,17 +488,22 @@
     <img src="images/New%20Project.png" alt="KLR" />
     <div class="footer-title">King League Racing</div>
   </div>
-  <p>Season 1 · All rights reserved · KLR</p>
+  <p>Season 2 · All rights reserved · KLR</p>
 </footer>
 
 <script>
   function switchSeason(val) {
-    if (val === '1') return;
-    window.location.href = 'season' + val + '.html';
+    if (val === '1') {
+      window.location.href = 'season_1/season1_index.html'; // Directs to Season 1 page
+    } else if (val === '2') {
+      window.location.href = 'index.html'; // Directs to Season 2 page
+    } else {
+      window.location.href = 'season' + val + '.html';
+    }
   }
 
-  // Countdown timer target
-  const targetRaceTime = new Date("July 14, 2026 18:00:00").getTime();
+  // Set the target date for Round 1 of Season 2
+  const targetRaceTime = new Date("July 5, 2026 18:00:00").getTime();
 
   function formatTimeNum(num) {
     return num < 10 ? '0' + num : num;
@@ -484,7 +516,7 @@
     if (difference <= 0) {
       const wrap = document.querySelector(".countdown-timer-wrap");
       if (wrap) {
-        wrap.innerHTML = "<div class='timer-segment' style='min-width:140px;'><div class='timer-num' style='color:var(--neon); font-size:16px;'>TBD</div></div>";
+        wrap.innerHTML = "<div class='timer-segment' style='min-width:140px;'><div class='timer-num' style='color:var(--neon); font-size:16px;'>RACE WEEKEND</div></div>";
       }
       clearInterval(countdownInterval);
       return;
