@@ -302,6 +302,22 @@
       opacity: 0.5;
     }
 
+    /* Centered Team Background Logo Watermark */
+    .card-bg-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      filter: grayscale(20%);
+    }
+
     /* Watermark Background Number */
     .driver-bg-number {
       position: absolute;
@@ -486,6 +502,10 @@
     .driver-card:not(.empty-seat):hover::after {
       opacity: 1;
     }
+    .driver-card:not(.empty-seat):hover .card-bg-logo {
+      opacity: 0.15;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
     .driver-card:not(.empty-seat):hover .driver-bg-number {
       color: rgba(255, 255, 255, 0.08);
       transform: scale(1.05) translate(-10px, -5px);
@@ -588,7 +608,7 @@
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/mercedes.png" alt="Mercedes" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/mercedes.png" alt="Mercedes" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">Mercedes-AMG Petronas</div>
       </div>
       <div class="team-header-stats">Rank: <span>P1</span></div>
@@ -598,6 +618,7 @@
     <div class="team-drivers-grid">
       <!-- Ash Bartlam (1x WDC) -->
       <div class="driver-card" style="--team-color: #00a19c; --team-glow: rgba(0, 161, 156, 0.4); --team-gradient: linear-gradient(135deg, rgba(0, 161, 156, 0.3) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/mercedes.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">72</div>
         <div class="car-layer">
           <img src="images/drivers/ash.png" alt="Ash" class="driver-car-image" onerror="this.style.display='none';" />
@@ -627,6 +648,7 @@
 
       <!-- Lucas Thomsen -->
       <div class="driver-card" style="--team-color: #00a19c; --team-glow: rgba(0, 161, 156, 0.4); --team-gradient: linear-gradient(135deg, rgba(0, 161, 156, 0.3) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/mercedes.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">90</div>
         <div class="car-layer">
           <img src="images/drivers/lucas.png" alt="Lucas" class="driver-car-image" onerror="this.style.display='none';" />
@@ -665,7 +687,7 @@
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/kick.png" alt="Sauber" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/kick.png" alt="Sauber" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">Stake Kick Sauber</div>
       </div>
       <div class="team-header-stats">Rank: <span>P2</span></div>
@@ -675,6 +697,7 @@
     <div class="team-drivers-grid">
       <!-- Roman Fernandez -->
       <div class="driver-card" style="--team-color: #01C00E; --team-glow: rgba(1, 192, 14, 0.4); --team-gradient: linear-gradient(135deg, rgba(1, 192, 14, 0.25) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/kick.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">5</div>
         <div class="car-layer">
           <img src="images/drivers/roman.png" alt="Roman" class="driver-car-image" onerror="this.style.display='none';" />
@@ -702,6 +725,7 @@
 
       <!-- Finn Bevington Crean -->
       <div class="driver-card" style="--team-color: #01C00E; --team-glow: rgba(1, 192, 14, 0.4); --team-gradient: linear-gradient(135deg, rgba(1, 192, 14, 0.25) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/kick.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">25</div>
         <div class="car-layer">
           <img src="images/drivers/finn.png" alt="Finn" class="driver-car-image" onerror="this.style.display='none';" />
@@ -740,7 +764,7 @@
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/redbull.png" alt="Red Bull" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/redbull.png" alt="Red Bull" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">Oracle Red Bull Racing</div>
       </div>
       <div class="team-header-stats">Rank: <span>P3</span></div>
@@ -750,6 +774,7 @@
     <div class="team-drivers-grid">
       <!-- James Van Rensburg -->
       <div class="driver-card" style="--team-color: #3671C6; --team-glow: rgba(54, 113, 198, 0.4); --team-gradient: linear-gradient(135deg, rgba(54, 113, 198, 0.3) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/redbull.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">30</div>
         <div class="car-layer">
           <img src="images/drivers/james.png" alt="James" class="driver-car-image" onerror="this.style.display='none';" />
@@ -775,11 +800,12 @@
         </div>
       </div>
 
-      <!-- James Van Rensburg -->
+      <!-- Enzo DE GUZMAN -->
       <div class="driver-card" style="--team-color: #3671C6; --team-glow: rgba(54, 113, 198, 0.4); --team-gradient: linear-gradient(135deg, rgba(54, 113, 198, 0.3) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/redbull.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">13</div>
         <div class="car-layer">
-          <img src="images/drivers/enzo.png" alt="James" class="driver-car-image" onerror="this.style.display='none';" />
+          <img src="images/drivers/enzo.png" alt="Enzo" class="driver-car-image" onerror="this.style.display='none';" />
         </div>
         <div class="card-content">
           <div class="card-left-overlay"></div>
@@ -815,7 +841,7 @@
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/aston%20martin.png" alt="Aston Martin" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/aston%20martin.png" alt="Aston Martin" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">Aston Martin Aramco</div>
       </div>
       <div class="team-header-stats">Rank: <span>P4</span></div>
@@ -825,6 +851,7 @@
     <div class="team-drivers-grid">
       <!-- Austin Lauder -->
       <div class="driver-card" style="--team-color: #229971; --team-glow: rgba(34, 153, 113, 0.4); --team-gradient: linear-gradient(135deg, rgba(34, 153, 113, 0.3) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/aston%20martin.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">69</div>
         <div class="car-layer">
           <img src="images/drivers/austin.png" alt="Austin" class="driver-car-image" onerror="this.style.display='none';" />
@@ -852,6 +879,7 @@
 
       <!-- Michael van Loggerenburg -->
       <div class="driver-card" style="--team-color: #229971; --team-glow: rgba(34, 153, 113, 0.4); --team-gradient: linear-gradient(135deg, rgba(34, 153, 113, 0.3) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/aston%20martin.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">42</div>
         <div class="car-layer">
           <img src="images/drivers/michael.png" alt="Michael" class="driver-car-image" onerror="this.style.display='none';" />
@@ -890,7 +918,7 @@
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/williams.png" alt="Williams" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/williams.png" alt="Williams" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">Atlassian Williams Racing</div>
       </div>
       <div class="team-header-stats">Rank: <span>P5</span></div>
@@ -900,6 +928,7 @@
     <div class="team-drivers-grid">
       <!-- Alleen Tulo -->
       <div class="driver-card" style="--team-color: #64C4FF; --team-glow: rgba(100, 196, 255, 0.4); --team-gradient: linear-gradient(135deg, rgba(100, 196, 255, 0.25) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/williams.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">20</div>
         <div class="car-layer">
           <img src="images/drivers/alleen.png" alt="Alleen" class="driver-car-image" onerror="this.style.display='none';" />
@@ -934,18 +963,18 @@
     </div>
   </section>
 
-    <!-- 6th: FERRARI -->
+  <!-- 6th: FERRARI -->
   <section class="team-section" style="--team-color: RED;">
     <div class="flank-car-container left">
-      <img src="images/cars/ferrari.png" alt="Williams Car Left" class="flank-car left" onerror="this.style.display='none';" />
+      <img src="images/cars/ferrari.png" alt="Ferrari Car Left" class="flank-car left" onerror="this.style.display='none';" />
     </div>
     <div class="flank-car-container right">
-      <img src="images/cars/ferrari.png" alt="Williams Car Right" class="flank-car right" onerror="this.style.display='none';" />
+      <img src="images/cars/ferrari.png" alt="Ferrari Car Right" class="flank-car right" onerror="this.style.display='none';" />
     </div>
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/ferrari.png" alt="Williams" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/ferrari.png" alt="Ferrari" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">Scuderia Ferrari HP</div>
       </div>
       <div class="team-header-stats">Rank: <span>P6</span></div>
@@ -953,11 +982,12 @@
 
     <!-- Drivers Grid -->
     <div class="team-drivers-grid">
-      <!-- william -->
+      <!-- William Eames -->
       <div class="driver-card" style="--team-color: RED; --team-glow: rgba(255, 100, 100, 0.4); --team-gradient: linear-gradient(135deg, rgba(255, 100, 100, 0.25) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/ferrari.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">34</div>
         <div class="car-layer">
-          <img src="images/drivers/william_eames.png" alt="Alleen" class="driver-car-image" onerror="this.style.display='none';" />
+          <img src="images/drivers/william_eames.png" alt="William" class="driver-car-image" onerror="this.style.display='none';" />
         </div>
         <div class="card-content">
           <div class="card-left-overlay"></div>
@@ -987,22 +1017,20 @@
         <div class="empty-seat-sub">Driver Available</div>
       </div>
     </div>
-
-
   </section>
 
   <!-- 7th: MCLAREN -->
   <section class="team-section" style="--team-color: #FF8000;">
     <div class="flank-car-container left">
-      <img src="images/cars/mclaren.png" alt="Williams Car Left" class="flank-car left" onerror="this.style.display='none';" />
+      <img src="images/cars/mclaren.png" alt="McLaren Car Left" class="flank-car left" onerror="this.style.display='none';" />
     </div>
     <div class="flank-car-container right">
-      <img src="images/cars/mclaren.png" alt="Williams Car Right" class="flank-car right" onerror="this.style.display='none';" />
+      <img src="images/cars/mclaren.png" alt="McLaren Car Right" class="flank-car right" onerror="this.style.display='none';" />
     </div>
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/mclaren.png" alt="Williams" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/mclaren.png" alt="McLaren" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">McLaren Mastercard</div>
       </div>
       <div class="team-header-stats">Rank: <span>P7</span></div>
@@ -1010,11 +1038,12 @@
 
     <!-- Drivers Grid -->
     <div class="team-drivers-grid">
-      <!-- Dan DaVIES -->
+      <!-- Dan Davies -->
       <div class="driver-card" style="--team-color: #FF8000; --team-glow: rgba(255, 128, 0, 0.4); --team-gradient: linear-gradient(135deg, rgba(255, 163, 100, 0.25) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/mclaren.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">78</div>
         <div class="car-layer">
-          <img src="images/drivers/dan.png" alt="Alleen" class="driver-car-image" onerror="this.style.display='none';" />
+          <img src="images/drivers/dan.png" alt="Dan" class="driver-car-image" onerror="this.style.display='none';" />
         </div>
         <div class="card-content">
           <div class="card-left-overlay"></div>
@@ -1037,11 +1066,12 @@
         </div>
       </div>
 
-      <!-- Jayden -->
+      <!-- Jayden Duncan -->
       <div class="driver-card" style="--team-color: #FF8000; --team-glow: rgba(255, 128, 0, 0.4); --team-gradient: linear-gradient(135deg, rgba(255, 163, 100, 0.25) 0%, rgba(0,0,0,0) 70%);">
+        <img src="images/teams/mclaren.png" alt="" class="card-bg-logo" onerror="this.style.display='none';" />
         <div class="driver-bg-number">49</div>
         <div class="car-layer">
-          <img src="images/drivers/jayden.png" alt="Alleen" class="driver-car-image" onerror="this.style.display='none';" />
+          <img src="images/drivers/jayden.png" alt="Jayden" class="driver-car-image" onerror="this.style.display='none';" />
         </div>
         <div class="card-content">
           <div class="card-left-overlay"></div>
@@ -1064,113 +1094,103 @@
         </div>
       </div>
     </div>
-
-
   </section>
 
-
-  <!-- 7th: Alpine -->
+  <!-- 8th: ALPINE -->
   <section class="team-section" style="--team-color: #ff00f0;">
     <div class="flank-car-container left">
-      <img src="images/cars/alpine.png" alt="Williams Car Left" class="flank-car left" onerror="this.style.display='none';" />
+      <img src="images/cars/alpine.png" alt="Alpine Car Left" class="flank-car left" onerror="this.style.display='none';" />
     </div>
     <div class="flank-car-container right">
-      <img src="images/cars/alpine.png" alt="Williams Car Right" class="flank-car right" onerror="this.style.display='none';" />
+      <img src="images/cars/alpine.png" alt="Alpine Car Right" class="flank-car right" onerror="this.style.display='none';" />
     </div>
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/alpine.png" alt="Williams" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/alpine.png" alt="Alpine" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">BWT Alpine</div>
       </div>
       <div class="team-header-stats">Rank: <span>P8</span></div>
     </div>
+
     <!-- Drivers Grid -->
     <div class="team-drivers-grid">
-      <!-- Empty Seat Placeholder -->
-        <div class="driver-card empty-seat">
-          <div class="empty-seat-icon">💺</div>
-          <div class="empty-seat-title">Empty Seat</div>
-          <div class="empty-seat-sub">Driver Available</div>
-        </div>
-
-    <!-- Empty Seat Placeholder -->
-        <div class="driver-card empty-seat">
-          <div class="empty-seat-icon">💺</div>
-          <div class="empty-seat-title">Empty Seat</div>
-          <div class="empty-seat-sub">Driver Available</div>
-        </div>
+      <div class="driver-card empty-seat">
+        <div class="empty-seat-icon">💺</div>
+        <div class="empty-seat-title">Empty Seat</div>
+        <div class="empty-seat-sub">Driver Available</div>
+      </div>
+      <div class="driver-card empty-seat">
+        <div class="empty-seat-icon">💺</div>
+        <div class="empty-seat-title">Empty Seat</div>
+        <div class="empty-seat-sub">Driver Available</div>
+      </div>
     </div>
   </section>
 
-<!-- 8th: Haas -->
+  <!-- 9th: HAAS -->
   <section class="team-section" style="--team-color: #ffffff;">
     <div class="flank-car-container left">
-      <img src="images/cars/haas.png" alt="Williams Car Left" class="flank-car left" onerror="this.style.display='none';" />
+      <img src="images/cars/haas.png" alt="Haas Car Left" class="flank-car left" onerror="this.style.display='none';" />
     </div>
     <div class="flank-car-container right">
-      <img src="images/cars/haas.png" alt="Williams Car Right" class="flank-car right" onerror="this.style.display='none';" />
+      <img src="images/cars/haas.png" alt="Haas Car Right" class="flank-car right" onerror="this.style.display='none';" />
     </div>
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/haas.png" alt="Williams" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/haas.png" alt="Haas" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">MoneyGram Haas</div>
       </div>
       <div class="team-header-stats">Rank: <span>P9</span></div>
     </div>
+
     <!-- Drivers Grid -->
     <div class="team-drivers-grid">
-      <!-- Empty Seat Placeholder -->
-        <div class="driver-card empty-seat">
-          <div class="empty-seat-icon">💺</div>
-          <div class="empty-seat-title">Empty Seat</div>
-          <div class="empty-seat-sub">Driver Available</div>
-        </div>
-
-    <!-- Empty Seat Placeholder -->
-        <div class="driver-card empty-seat">
-          <div class="empty-seat-icon">💺</div>
-          <div class="empty-seat-title">Empty Seat</div>
-          <div class="empty-seat-sub">Driver Available</div>
-        </div>
+      <div class="driver-card empty-seat">
+        <div class="empty-seat-icon">💺</div>
+        <div class="empty-seat-title">Empty Seat</div>
+        <div class="empty-seat-sub">Driver Available</div>
+      </div>
+      <div class="driver-card empty-seat">
+        <div class="empty-seat-icon">💺</div>
+        <div class="empty-seat-title">Empty Seat</div>
+        <div class="empty-seat-sub">Driver Available</div>
+      </div>
     </div>
   </section>
 
-  <!-- 9th: VCARB -->
+  <!-- 10th: VCARB -->
   <section class="team-section" style="--team-color: #ffffff;">
     <div class="flank-car-container left">
-      <img src="images/cars/vcarb.png" alt="Williams Car Left" class="flank-car left" onerror="this.style.display='none';" />
+      <img src="images/cars/vcarb.png" alt="Racing Bulls Car Left" class="flank-car left" onerror="this.style.display='none';" />
     </div>
     <div class="flank-car-container right">
-      <img src="images/cars/vcarb.png" alt="Williams Car Right" class="flank-car right" onerror="this.style.display='none';" />
+      <img src="images/cars/vcarb.png" alt="Racing Bulls Car Right" class="flank-car right" onerror="this.style.display='none';" />
     </div>
 
     <div class="team-header">
       <div class="team-header-info">
-        <img src="teams/racing%20bulls.png" alt="Williams" class="team-header-logo" onerror="this.style.display='none'" />
+        <img src="images/teams/racing%20bulls.png" alt="Racing Bulls" class="team-header-logo" onerror="this.style.display='none'" />
         <div class="team-header-title">Visa Cash App Racing Bulls</div>
       </div>
       <div class="team-header-stats">Rank: <span>P10</span></div>
     </div>
+
     <!-- Drivers Grid -->
     <div class="team-drivers-grid">
-      <!-- Empty Seat Placeholder -->
-        <div class="driver-card empty-seat">
-          <div class="empty-seat-icon">💺</div>
-          <div class="empty-seat-title">Empty Seat</div>
-          <div class="empty-seat-sub">Driver Available</div>
-        </div>
-
-    <!-- Empty Seat Placeholder -->
-        <div class="driver-card empty-seat">
-          <div class="empty-seat-icon">💺</div>
-          <div class="empty-seat-title">Empty Seat</div>
-          <div class="empty-seat-sub">Driver Available</div>
-        </div>
+      <div class="driver-card empty-seat">
+        <div class="empty-seat-icon">💺</div>
+        <div class="empty-seat-title">Empty Seat</div>
+        <div class="empty-seat-sub">Driver Available</div>
+      </div>
+      <div class="driver-card empty-seat">
+        <div class="empty-seat-icon">💺</div>
+        <div class="empty-seat-title">Empty Seat</div>
+        <div class="empty-seat-sub">Driver Available</div>
+      </div>
     </div>
   </section>
-
 
 </main>
 
@@ -1180,5 +1200,3 @@
 
 </body>
 </html>
-
-
