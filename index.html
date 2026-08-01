@@ -3,22 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KLR Season 1 – King League Racing Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <title>KLR – Kool League Racing Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
   
   <style>
     :root {
       --bg: #040408;
       --surface: #0a0a12;
-      --card: #0f0f1c;
-      --border: #1e1e38;
+      --card: rgba(15, 15, 28, 0.7);
+      --border: rgba(41, 121, 255, 0.18);
       --blue: #2979ff;
+      --blue-glow: rgba(41, 121, 255, 0.4);
       --neon: #c6ff00;
-      --green: #105310;
-      --gt-orange: #ff5252;
       --text: #f5f5fa;
-      --muted: #7c7c9a;
-      --radius: 16px;
+      --muted: #8e8ea8;
+      --radius: 20px;
       --ff-d: 'Barlow Condensed', sans-serif;
       --ff-b: 'Barlow', sans-serif;
     }
@@ -31,8 +30,11 @@
       font-family: var(--ff-b);
       font-size: 15px;
       line-height: 1.5;
-      background-image: linear-gradient(rgba(41,121,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(41,121,255,0.012) 1px, transparent 1px);
-      background-size: 32px 32px;
+      background-image:
+        radial-gradient(circle at 50% 20%, rgba(41, 121, 255, 0.08) 0%, transparent 60%),
+        linear-gradient(rgba(41,121,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(41,121,255,0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 32px 32px, 32px 32px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -42,9 +44,9 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* Fixated Top Navigation Bar Header */
+    /* Top Navigation Bar */
     nav {
-      background: rgba(4, 4, 8, 0.92);
+      background: rgba(4, 4, 8, 0.85);
       border-bottom: 1px solid var(--border);
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -61,43 +63,74 @@
       height: 72px;
     }
     .nav-logo { display: flex; align-items: center; gap: 12px; }
-    .nav-logo img { height: 48px; width: 48px; object-fit: contain; }
-    .nav-logo-text { font-family: var(--ff-d); font-size: 26px; font-weight: 900; letter-spacing: 3px; color: #fff; text-transform: uppercase; }
+    .nav-logo img { height: 44px; width: 44px; object-fit: contain; }
+    .nav-logo-text { font-family: var(--ff-d); font-size: 26px; font-weight: 900; letter-spacing: 2px; color: #fff; text-transform: uppercase; }
     .nav-logo-text span { color: var(--blue); }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 28px;
       list-style: none;
     }
     .nav-links a {
       font-family: var(--ff-d);
       font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 1px;
+      font-size: 15px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--muted);
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
-    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover { color: #fff; text-shadow: 0 0 10px rgba(41, 121, 255, 0.5); }
 
-    /* Grand Hub Hero Section */
+    /* Grand Hero Section */
     .hub-hero {
       text-align: center;
-      padding: 150px 24px 32px;
+      padding: 140px 24px 20px;
       position: relative;
     }
+    .hub-hero .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(41, 121, 255, 0.12);
+      border: 1px solid rgba(41, 121, 255, 0.4);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-family: var(--ff-d);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .badge-pill .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--blue);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--blue);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.3; transform: scale(0.8); }
+    }
+
     .hub-hero h1 {
       font-family: var(--ff-d);
-      font-size: clamp(42px, 7vw, 72px);
+      font-size: clamp(48px, 8vw, 84px);
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: -1px;
-      line-height: 0.95;
+      line-height: 0.9;
       color: #fff;
     }
     .hub-hero h1 span {
-      background: linear-gradient(135deg, #fff 30%, var(--blue));
+      background: linear-gradient(180deg, #ffffff 30%, var(--blue) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -110,40 +143,41 @@
       font-weight: 600;
     }
 
-    /* Branch Container Layout Grid */
+    /* Branch Container Layout */
     .branch-container {
-      max-width: 1340px;
+      max-width: 1200px;
       width: 100%;
-      margin: 16px auto 90px;
-      padding: 0 32px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      margin: 24px auto 80px;
+      padding: 0 24px;
     }
 
-    @media (max-width: 900px) {
-      .branch-container {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-    }
-
-    /* Cinematic Game Screenshot Choice Cards */
-    .branch-card {
+    /* Full-Featured F1 Hero Card */
+    .f1-card-featured {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       position: relative;
       overflow: hidden;
+      min-height: 520px;
       display: flex;
       flex-direction: column;
-      justify-flex: flex-end;
-      min-height: 480px;
+      justify-content: flex-end;
+      backdrop-filter: blur(12px);
       transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.45s ease, box-shadow 0.45s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Top Blue Accent Line */
+    .f1-card-featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), #00d2ff);
+      z-index: 4;
     }
     
-    /* Cinematic Background Screenshot Mounts */
+    /* Cinematic Background Screenshot Mount */
     .card-screenshot-bg {
       position: absolute;
       inset: 0;
@@ -154,92 +188,108 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 35%;
+      filter: brightness(0.45) contrast(1.1) saturate(0.95);
       transform: scale(1.02);
-      transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.45s ease;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.45s ease;
     }
-
-    /* Custom Gradient Overlays per branch to make text pop over the screenshots */
-    .f1-branch .card-screenshot-bg img { filter: brightness(0.4) contrast(1.05) saturate(0.9); }
-    .gt-branch .card-screenshot-bg img { filter: brightness(0.4) contrast(1.05) saturate(0.9); }
 
     .card-screenshot-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(6,6,11,0.2) 0%, rgba(6,6,11,0.75) 50%, rgba(4,4,8,0.98) 100%);
-      transition: opacity 0.45s ease;
+      background: linear-gradient(180deg, rgba(4,4,8,0.2) 0%, rgba(6,6,12,0.7) 45%, rgba(4,4,8,0.98) 100%);
     }
 
-    /* Colored Neon Ambience Backlighting Glows */
-    .branch-glow {
+    /* Blue Glow Effect */
+    .f1-glow {
       position: absolute;
-      bottom: -40px; right: -40px;
-      width: 280px; height: 280px;
+      bottom: -60px; right: -60px;
+      width: 380px; height: 380px;
       border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.15;
-      transition: opacity 0.45s ease, transform 0.45s ease;
+      background: var(--blue);
+      filter: blur(120px);
+      opacity: 0.22;
+      transition: opacity 0.5s ease, transform 0.5s ease;
       z-index: 2;
       pointer-events: none;
     }
-    .f1-branch .branch-glow { background: var(--blue); }
-    .gt-branch .branch-glow { background: var(--gt-orange); }
 
     /* Layout content inside background card bounds */
     .branch-content-wrapper {
       position: relative;
       z-index: 3;
-      padding: 40px;
+      padding: 48px;
       width: 100%;
-      margin-top: auto;
     }
 
-    /* Discipline Meta Tags */
+    .card-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
     .branch-tag {
-      display: inline-block;
       font-family: var(--ff-d);
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 4px;
-      margin-bottom: 20px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
+      padding: 6px 14px;
+      border-radius: 6px;
+      color: #fff;
+      background: var(--blue);
+      box-shadow: 0 0 16px var(--blue-glow);
     }
-    .f1-branch .branch-tag { color: var(--blue); border: 1px solid rgba(41,121,255,0.3); }
-    .gt-branch .branch-tag { color: var(--gt-orange); border: 1px solid rgba(255,82,82,0.3); }
-    .wec-branch .branch-tag { color: var(--green); border: 1px solid green; }
+
+    .season-status {
+      font-family: var(--ff-d);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--neon);
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(198, 255, 0, 0.3);
+      padding: 5px 12px;
+      border-radius: 6px;
+      backdrop-filter: blur(6px);
+      text-transform: uppercase;
+    }
 
     .branch-title {
       font-family: var(--ff-d);
-      font-size: 46px;
+      font-size: clamp(38px, 5vw, 56px);
       font-weight: 900;
       text-transform: uppercase;
-      line-height: 1;
+      line-height: 0.95;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       letter-spacing: 0.5px;
     }
+
     .branch-desc {
-      color: #a0a0c0;
-      font-size: 15px;
-      max-width: 95%;
+      color: #b0b0d0;
+      font-size: 16px;
+      max-width: 680px;
       line-height: 1.6;
     }
 
     /* Championship Stats Metrics Row */
     .branch-stats-preview {
       display: flex;
-      gap: 36px;
-      margin-top: 28px;
-      margin-bottom: 32px;
+      gap: 48px;
+      margin-top: 32px;
+      margin-bottom: 36px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     .b-stat { display: flex; flex-direction: column; }
     .b-label {
       font-family: var(--ff-d);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--muted);
       text-transform: uppercase;
@@ -247,72 +297,95 @@
     }
     .b-value {
       font-family: var(--ff-d);
-      font-size: 26px;
-      font-weight: 800;
+      font-size: 32px;
+      font-weight: 900;
       color: #fff;
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
-    /* High-contrast Action Hub Buttons */
-    .branch-btn {
+    /* Action Links Container */
+    .action-hub-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+      font-family: var(--ff-d);
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 16px 36px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--blue);
+      border: 1px solid var(--blue);
+      color: #fff;
+      box-shadow: 0 4px 24px var(--blue-glow);
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .primary-btn svg {
+      width: 18px; height: 18px;
+      fill: currentColor;
+      transition: transform 0.3s ease;
+    }
+
+    .secondary-btn {
       font-family: var(--ff-d);
       font-size: 14px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      padding: 14px 32px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(6, 6, 11, 0.7);
+      padding: 15px 24px;
+      border-radius: 10px;
+      background: rgba(10, 10, 18, 0.6);
       border: 1px solid var(--border);
-      color: #fff;
+      color: #d0d0e5;
       backdrop-filter: blur(8px);
-      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    .branch-btn svg {
-      width: 16px; height: 16px;
-      fill: currentColor;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
     }
 
-    /* Card Interactive Hover Actions */
-    .branch-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+    /* Interactive Hover States */
+    .f1-card-featured:hover {
+      border-color: rgba(41, 121, 255, 0.5);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(41, 121, 255, 0.25);
     }
-    .branch-card.f1-branch:hover { border-color: var(--blue); }
-    .branch-card.gt-branch:hover { border-color: var(--gt-orange); }
-    .branch-card.wec-branch:hover { border-color: var(--green); }
-
-
-    .branch-card:hover .card-screenshot-bg img {
-      transform: scale(1.06);
+    .f1-card-featured:hover .card-screenshot-bg img {
+      transform: scale(1.05);
+      filter: brightness(0.55) contrast(1.12) saturate(1.05);
     }
-    .f1-branch:hover .card-screenshot-bg img { filter: brightness(0.48) contrast(1.08) saturate(1.0); }
-    .gt-branch:hover .card-screenshot-bg img { filter: brightness(0.48) contrast(1.08) saturate(1.0); }
-    .wec-branch:hover .card-screenshot-bg img { filter: brightness(0.48) contrast(1.08) saturate(1.0); }
+    .f1-card-featured:hover .f1-glow {
+      opacity: 0.4;
+      transform: scale(1.2);
+    }
+    .primary-btn:hover {
+      background: #448aff;
+      border-color: #448aff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(41, 121, 255, 0.6);
+    }
+    .primary-btn:hover svg { transform: translateX(6px); }
+    .secondary-btn:hover {
+      background: rgba(41, 121, 255, 0.12);
+      color: #fff;
+      border-color: rgba(41, 121, 255, 0.4);
+    }
 
-    .branch-card:hover .branch-glow { opacity: 0.28; transform: scale(1.15); }
-
-    /* Button transformations on hovering parent card */
-    .f1-branch:hover .branch-btn { background: var(--blue); border-color: var(--blue); box-shadow: 0 4px 20px rgba(41,121,255,0.4); }
-    .gt-branch:hover .branch-btn { background: var(--gt-orange); border-color: var(--gt-orange); box-shadow: 0 4px 20px rgba(255,82,82,0.4); }
-    .wec-branch:hover .branch-btn { background: var(--green); border-color: var(--green); box-shadow: 0 4px 20px #3ec03e; }
-    .branch-card:hover .branch-btn svg { transform: translateX(5px); }
-
-    /* Bottom Checker Strip decoration */
+    /* Checker Strip Bottom Decoration */
     .checker-strip {
       height: 8px;
-      background-image: repeating-linear-gradient(90deg, var(--blue) 0px, var(--blue) 12px, #040408 12px, #040408 24px);
-      opacity: 0.25;
+      background-image: repeating-linear-gradient(90deg, var(--blue) 0px, var(--blue) 14px, #040408 14px, #040408 28px);
+      opacity: 0.35;
     }
 
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
-      padding: 28px;
+      padding: 32px;
       text-align: center;
     }
     .footer-logo-wrap {
@@ -327,17 +400,26 @@
       text-transform: uppercase;
     }
     .footer-logo-wrap img { height: 32px; object-fit: contain; }
+
+    @media (max-width: 768px) {
+      .branch-content-wrapper { padding: 28px 24px; }
+      .branch-stats-preview { gap: 24px; flex-wrap: wrap; }
+      .action-hub-row { flex-direction: column; align-items: stretch; }
+      .primary-btn, .secondary-btn { justify-content: center; text-align: center; }
+    }
   </style>
 </head>
 <body>
 
   <nav>
     <div class="nav-inner">
-      <div class="nav-logo">
+      <a href="index.html" class="nav-logo">
         <img src="images/New%20Project.png" alt="KLR Logo" onerror="this.style.display='none';" />
         <div class="nav-logo-text">Kool League <span>Racing</span></div>
-      </div>
+      </a>
       <ul class="nav-links">
+        <li><a href="f1/standings.html">Standings</a></li>
+        <li><a href="f1/drivers.html">Drivers</a></li>
         <li><a href="hall-of-fame.html">Hall of Fame</a></li>
       </ul>
     </div>
@@ -345,61 +427,49 @@
 
   <main>
     <div class="hub-hero">
-      <h1>KLR <span>SELECT HUB</span></h1>
-      <p>Choose an active category to view race calendars, standings, and results</p>
+      <div class="badge-pill">
+        <span class="pulse-dot"></span>
+        Official League Championship
+      </div>
+      <h1>KLR <span>FORMULA 1</span></h1>
+      <p>Season 2 Grid Lineup · Race Calendars · Standings & Results</p>
     </div>
 
     <div class="branch-container">
       
-      <a href="f1/index.html" class="branch-card f1-branch">
+      <div class="f1-card-featured">
         <div class="card-screenshot-bg">
-          <img src="f1/images/win/r2s1win.png" alt="Formula One Racing" onerror="this.src='images/win/r1s1win.png';" />
+          <img src="f1/season_1/images/win/r2s1win.png" alt="Formula One Racing" onerror="this.src='f1/images/win/r1s1win.png';" />
         </div>
         
-        <div class="branch-glow"></div>
+        <div class="f1-glow"></div>
         
         <div class="branch-content-wrapper">
-          <div class="branch-tag">F1 25</div>
-          <h2 class="branch-title">Formula 1 Branch</h2>
-          <p class="branch-desc">High downforce weapon racing. Master sharp apexes, grid battles, and clinical overtaking loops under the premier formula category banner.</p>
+          <div class="card-header-top">
+            <span class="branch-tag">F1 25 Championship</span>
+            <span class="season-status">Season 2 Live</span>
+          </div>
+
+          <h2 class="branch-title">Formula 1 Championship</h2>
+          <p class="branch-desc">High-downforce open-wheel racing. Master sharp apexes, intense wheel-to-wheel battles, and tactical race strategies across official championship circuits.</p>
           
           <div class="branch-stats-preview">
-            <div class="b-stat"><span class="b-label">Status</span><span class="b-value" style="color: var(--neon)">LIVE NOW</span></div>
             <div class="b-stat"><span class="b-label">Season</span><span class="b-value">S2</span></div>
-            <div class="b-stat"><span class="b-label">Rounds</span><span class="b-value">7</span></div>
+            <div class="b-stat"><span class="b-label">Rounds</span><span class="b-value">7 Races</span></div>
+            <div class="b-stat"><span class="b-label">Active Grid</span><span class="b-value">10 Teams</span></div>
           </div>
 
-          <div class="branch-btn">
-            Enter F1 Dashboard
-            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          <div class="action-hub-row">
+            <a href="f1/index.html" class="primary-btn">
+              Enter F1 Dashboard
+              <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+            </a>
+            <a href="f1/standings.html" class="secondary-btn">Standings</a>
+            <a href="f1/drivers.html" class="secondary-btn">Drivers Grid</a>
           </div>
         </div>
-      </a>
+      </div>
 
-      <a href="gt/index.html" class="branch-card gt-branch">
-        <div class="card-screenshot-bg">
-          <img src="gt/images/gt3_bg.png" alt="GT3 Championship Racing" onerror="this.src='images/win/r2s1win.png';" />
-        </div>
-        
-        <div class="branch-glow"></div>
-        
-        <div class="branch-content-wrapper">
-          <div class="branch-tag">Assetto Corsa Competizione</div>
-          <h2 class="branch-title">GT3 Branch</h2>
-          <p class="branch-desc">Agile multi-manufacturer production sports car grids. Heavy paint-rubbing, aggressive braking configurations, and signature championship circuits.</p>
-          
-          <div class="branch-stats-preview">
-            <div class="b-stat"><span class="b-label">Status</span><span class="b-value" style="color: #00e5ff">UPCOMING</span></div>
-            <div class="b-stat"><span class="b-label">Season</span><span class="b-value">S1</span></div>
-            <div class="b-stat"><span class="b-label">Rounds</span><span class="b-value">TBD</span></div>
-          </div>
-
-          <div class="branch-btn">
-            Enter GT3 Dashboard
-            <svg viewBox="0 0 24 24"><path d="M5 13h11.87l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
-          </div>
-        </div>
-      </a>
     </div>
   </main>
 

@@ -4,148 +4,326 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Race Results – KLR Season 2</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
   
   <!-- Flag Icons CSS for cross-OS compatibility -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
 
   <style>
     :root {
-      --bg: #06060b;
-      --surface: #0c0c14;
-      --card: #11111f;
-      --border: #1e1e38;
+      --bg: #040408;
+      --surface: #0a0a12;
+      --card: rgba(15, 15, 28, 0.7);
+      --border: rgba(41, 121, 255, 0.18);
       --blue: #2979ff;
+      --blue-glow: rgba(41, 121, 255, 0.35);
       --neon: #c6ff00;
-      --neon2: #00e5ff;
       --text: #f5f5fa;
-      --muted: #7c7c9a;
-      --radius: 8px;
+      --muted: #8e8ea8;
+      --radius: 16px;
       --ff-d: 'Barlow Condensed', sans-serif;
       --ff-b: 'Barlow', sans-serif;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--ff-b);
       font-size: 15px;
       line-height: 1.5;
-      background-image: linear-gradient(rgba(41,121,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(41,121,255,0.02) 1px, transparent 1px);
-      background-size: 24px 24px;
+      background-image:
+        radial-gradient(circle at 50% 10%, rgba(41, 121, 255, 0.08) 0%, transparent 50%),
+        linear-gradient(rgba(41,121,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(41,121,255,0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 32px 32px, 32px 32px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-x: hidden;
     }
+
     a { color: inherit; text-decoration: none; }
-    
+
+    /* Top Navigation Bar */
     nav {
-      background: rgba(6,6,11,0.94);
-      border-bottom: 2px solid var(--blue);
+      background: rgba(4, 4, 8, 0.85);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
     }
     .nav-inner {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      height: 72px;
     }
-    .nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
     .nav-logo img { height: 44px; width: 44px; object-fit: contain; }
-    .nav-logo-text { font-family: var(--ff-d); font-size: 22px; font-weight: 900; letter-spacing: 2px; color: #fff; }
+    .nav-logo-text { font-family: var(--ff-d); font-size: 26px; font-weight: 900; letter-spacing: 2px; color: #fff; text-transform: uppercase; }
     .nav-logo-text span { color: var(--blue); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { font-family: var(--ff-d); font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); transition: color .2s; }
-    .nav-links a:hover, .nav-links a.active { color: #fff; }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-family: var(--ff-d);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 10px rgba(41, 121, 255, 0.5); }
 
     /* Dynamic Next Race Countdown Banner */
-    .countdown-banner { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 24px; }
-    .countdown-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .countdown-banner {
+      background: rgba(10, 10, 18, 0.8);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      backdrop-filter: blur(8px);
+    }
+    .countdown-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
     .countdown-info { display: flex; align-items: center; gap: 16px; }
-    .countdown-flag { font-size: 24px; line-height: 1; border-radius: 2px; }
-    .countdown-label h3 { font-family: var(--ff-d); font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
-    .countdown-label p { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-    .countdown-timer-wrap { display: flex; gap: 12px; }
-    .timer-segment { background: var(--card); border: 1px solid var(--border); border-radius: 4px; min-width: 65px; padding: 6px 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
-    .timer-num { font-family: var(--ff-d); font-size: 24px; font-weight: 800; color: var(--blue); line-height: 1.1; }
-    .timer-unit { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .countdown-flag { font-size: 28px; line-height: 1; border-radius: 4px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+    .countdown-label h3 { font-family: var(--ff-d); font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #fff; }
+    .countdown-label p { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+    .countdown-timer-wrap { display: flex; gap: 10px; }
+    .timer-segment {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      min-width: 68px;
+      padding: 6px 12px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .timer-num { font-family: var(--ff-d); font-size: 26px; font-weight: 900; color: var(--blue); line-height: 1; text-shadow: 0 0 8px var(--blue-glow); }
+    .timer-unit { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
-    .hero { position: relative; overflow: hidden; background: #030307; min-height: 300px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
-    .hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(41,121,255,0.12) 0%, transparent 75%); }
-    .hero-content { position: relative; z-index: 2; text-align: center; padding: 40px 20px; }
-    .hero-logo-wrap { display: inline-block; margin-bottom: 16px; }
-    .hero-logo-wrap img { width: 100px; height: 100px; object-fit: contain; display: block; }
-    .hero h1 { font-family: var(--ff-d); font-size: clamp(40px, 7vw, 76px); font-weight: 900; text-transform: uppercase; line-height: 0.95; letter-spacing: -1px; color: #fff; }
-    .hero h1 em { font-style: normal; color: var(--blue); }
-    .hero-sub { margin-top: 12px; color: var(--muted); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
-    .checker-tape { height: 8px; background-image: repeating-linear-gradient(90deg, var(--blue) 0px, var(--blue) 12px, #06060b 12px, #06060b 24px); opacity: .4; }
-    
-    .controls-bar { max-width: 1200px; margin: 36px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .controls-label { font-family: var(--ff-d); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
-    .season-dropdown { appearance: none; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: var(--ff-d); font-size: 15px; font-weight: 700; letter-spacing: 1px; padding: 8px 40px 8px 16px; border-radius: var(--radius); cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232979ff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; transition: border-color .2s; }
-    .season-dropdown:focus { outline: none; border-color: var(--blue); }
-    
-    .season-meta { max-width: 1200px; margin: 20px auto 0; padding: 0 24px; }
-    .season-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--blue); border-radius: var(--radius); padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; }
-    .meta-block label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .meta-block .value { font-family: var(--ff-d); font-size: 24px; font-weight: 800; color: #fff; }
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 60px 24px 30px;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(41, 121, 255, 0.12);
+      border: 1px solid rgba(41, 121, 255, 0.4);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-family: var(--ff-d);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: var(--ff-d);
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 0.95;
+      color: #fff;
+    }
+    .hero h1 span {
+      background: linear-gradient(180deg, #ffffff 30%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    /* Checker Strip Visual Divider */
+    .checker-tape {
+      height: 6px;
+      background-image: repeating-linear-gradient(90deg, var(--blue) 0px, var(--blue) 12px, #040408 12px, #040408 24px);
+      opacity: 0.35;
+      margin-top: 20px;
+    }
+
+    /* Controls Bar & Metadata Layout */
+    .content-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .controls-bar {
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .controls-label { font-family: var(--ff-d); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .season-dropdown {
+      appearance: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-family: var(--ff-d);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 10px 42px 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232979ff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: all .3s ease;
+    }
+    .season-dropdown:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 12px var(--blue-glow); }
+
+    .season-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .meta-block label { display: block; font-family: var(--ff-d); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .meta-block .value { font-family: var(--ff-d); font-size: 28px; font-weight: 900; color: #fff; line-height: 1; }
     .meta-block .value.blue { color: var(--blue); }
     .meta-block .value.neon { color: var(--neon); }
-    .meta-block .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    
-    .section-header { max-width: 1200px; margin: 44px auto 18px; padding: 0 24px; display: flex; align-items: center; gap: 16px; }
-    .section-header h2 { font-family: var(--ff-d); font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .meta-block .sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* Section Divider Header */
+    .section-header {
+      margin: 48px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-header h2 { font-family: var(--ff-d); font-size: 16px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
     .section-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    
-    .race-grid { max-width: 1200px; margin: 0 auto 80px; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
-    .race-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color .2s, transform .2s; position: relative; }
-    .race-card:hover { border-color: var(--blue); transform: translateY(-2px); }
-    
-    /* Upcoming Card Styling */
-    .race-card.upcoming { opacity: .65; }
-    .race-card.upcoming .card-body::after { content: 'UPCOMING'; position: absolute; top: 12px; right: 12px; background: var(--border); color: var(--muted); font-family: var(--ff-d); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 8px; border-radius: 3px; }
+
+    /* Race Card Grid */
+    .race-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .race-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(12px);
+    }
+    .race-card:hover {
+      border-color: rgba(41, 121, 255, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 20px var(--blue-glow);
+    }
+
+    /* Upcoming Card Opacity Styling */
+    .race-card.upcoming { opacity: 0.75; }
     .race-card.upcoming:hover { opacity: 1; }
 
-    .card-header { position: relative; height: 120px; overflow: hidden; background: #090911; }
-    .card-track-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.45); transition: filter .3s; }
-    .race-card:hover .card-track-img { filter: brightness(.55); }
-    .card-header-overlay { position: absolute; inset: 0; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(6,6,11,0.8) 100%); }
+    .card-header { position: relative; height: 140px; overflow: hidden; background: #080810; }
+    .card-track-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45); transition: transform 0.5s ease, filter 0.3s ease; }
+    .race-card:hover .card-track-img { filter: brightness(0.6); transform: scale(1.05); }
+
+    .card-header-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(4,4,8,0.3) 0%, rgba(4,4,8,0.95) 100%);
+    }
     .card-top-row { display: flex; align-items: center; justify-content: space-between; }
-    .round-badge { font-family: var(--ff-d); font-size: 11px; font-weight: 700; letter-spacing: 1px; background: var(--border); color: #fff; padding: 3px 8px; border-radius: 3px; }
-    .race-date { font-size: 12px; color: var(--muted); font-family: var(--ff-d); letter-spacing: 0.5px; }
+    .round-badge { font-family: var(--ff-d); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; background: var(--blue); color: #fff; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+    .race-date { font-size: 12px; color: var(--muted); font-family: var(--ff-d); letter-spacing: 1px; font-weight: 600; }
+
     .card-bottom-row { display: flex; align-items: flex-end; gap: 12px; }
-    .card-flag-wrap { font-size: 20px; line-height: 1; margin-bottom: 2px; border-radius: 2px; }
-    .race-circuit { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
-    .race-location { font-family: var(--ff-d); font-size: 24px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; line-height: 1; color: #fff; }
+    .card-flag-wrap { font-size: 24px; line-height: 1; border-radius: 3px; box-shadow: 0 0 8px rgba(0,0,0,0.5); }
+    .race-circuit { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+    .race-location { font-family: var(--ff-d); font-size: 26px; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; line-height: 1; color: #fff; }
+
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .podium { display: flex; flex-direction: column; gap: 12px; }
+    .podium-row { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.02); padding: 6px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.03); }
     
-    .card-body { padding: 16px; position: relative; }
-    .podium { display: flex; flex-direction: column; gap: 10px; }
-    .podium-row { display: flex; align-items: center; gap: 12px; }
-    .pos { font-family: var(--ff-d); font-size: 20px; font-weight: 900; width: 24px; text-align: center; line-height: 1; color: var(--muted); }
-    .pos.p1 { color: var(--neon); }
+    .pos { font-family: var(--ff-d); font-size: 20px; font-weight: 900; width: 20px; text-align: center; line-height: 1; color: var(--muted); }
+    .pos.p1 { color: var(--neon); text-shadow: 0 0 8px rgba(198, 255, 0, 0.4); }
     .pos.p2 { color: #d1d5db; }
     .pos.p3 { color: #f59e0b; }
-    .team-logo-wrap { width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-    .team-logo-wrap img { width: 24px; height: 24px; object-fit: contain; display: block; }
-    .driver-name { font-family: var(--ff-d); font-size: 18px; font-weight: 700; flex: 1; color: #fff; }
-    .team-tag { font-size: 11px; color: var(--muted); background: rgba(255,255,255,0.04); padding: 2px 8px; border-radius: 3px; white-space: nowrap; }
-    
-    .card-footer { border-top: 1px solid var(--border); padding: 12px 16px; display: flex; justify-content: flex-end; background: rgba(0,0,0,0.1); }
-    .btn-results { font-family: var(--ff-d); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; border: 1px solid var(--border); padding: 6px 16px; border-radius: 4px; transition: all .2s; background: rgba(255,255,255,0.02); }
-    .btn-results:hover { background: #fff; color: #000; border-color: #fff; }
-    .btn-upcoming { font-family: var(--ff-d); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); padding: 6px 0; }
-    
-    footer { background: #030307; border-top: 1px solid var(--border); padding: 40px 20px; text-align: center; }
-    .footer-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 10px; }
-    .footer-logo-wrap img { height: 36px; }
-    .footer-title { font-family: var(--ff-d); font-size: 20px; font-weight: 900; letter-spacing: 2px; color: #fff; }
-    footer p { font-size: 13px; color: var(--muted); margin-top: 6px; }
-    
-    @media(max-width:640px){
-      .nav-links { display:none; }
+
+    .team-logo-wrap { width: 30px; height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .team-logo-wrap img { width: 22px; height: 22px; object-fit: contain; }
+    .driver-name { font-family: var(--ff-d); font-size: 18px; font-weight: 800; flex: 1; color: #fff; letter-spacing: 0.5px; }
+    .team-tag { font-size: 11px; color: var(--muted); background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 4px; font-weight: 600; text-transform: uppercase; }
+
+    .card-footer { border-top: 1px solid var(--border); padding: 14px 20px; display: flex; justify-content: flex-end; background: rgba(0,0,0,0.2); }
+    .btn-results { font-family: var(--ff-d); font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; background: var(--blue); border: 1px solid var(--blue); padding: 8px 20px; border-radius: 6px; transition: all 0.3s ease; box-shadow: 0 0 12px var(--blue-glow); }
+    .btn-results:hover { background: #448aff; border-color: #448aff; transform: translateY(-1px); }
+    .btn-upcoming { font-family: var(--ff-d); font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); padding: 6px 0; }
+
+    /* Footer */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 32px;
+      text-align: center;
+    }
+    .footer-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+      font-family: var(--ff-d);
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .footer-logo-wrap img { height: 32px; object-fit: contain; }
+
+    @media(max-width:768px){
+      .nav-links { display: none; }
       .season-card { grid-template-columns: 1fr 1fr; }
       .race-grid { grid-template-columns: 1fr; }
       .countdown-inner { flex-direction: column; text-align: center; }
@@ -159,7 +337,7 @@
   <div class="nav-inner">
     <a href="../index.html" class="nav-logo">
       <img src="images/New%20Project.png" alt="KLR" />
-      <div class="nav-logo-text">KLR <span>F1</span></div>
+      <div class="nav-logo-text">Kool League <span>Racing</span></div>
     </a>
     <ul class="nav-links">
       <li><a href="standings.html">Standings</a></li>
@@ -189,24 +367,23 @@
 </div>
 
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-logo-wrap"><img src="images/New%20Project.png" alt="KLR Logo" /></div>
-    <h1>Season <em>2</em></h1>
-    <div class="hero-sub">Race Calendar &amp; Podiums</div>
-  </div>
+  <div class="hero-badge">Official Race Calendar</div>
+  <h1>KLR <span>SEASON 2</span></h1>
+  <div class="hero-sub">Race Calendar &amp; Podiums</div>
 </div>
+
 <div class="checker-tape"></div>
 
-<div class="controls-bar">
-  <span class="controls-label">Season</span>
-  <select class="season-dropdown" onchange="switchSeason(this.value)">
-    <option value="2" selected>Season 2 - Current</option>
-    <option value="1">Season 1</option>
-  </select>
-</div>
+<div class="content-wrapper">
 
-<div class="season-meta">
+  <div class="controls-bar">
+    <span class="controls-label">Season</span>
+    <select class="season-dropdown" onchange="switchSeason(this.value)">
+      <option value="2" selected>Season 2 - Current</option>
+      <option value="1">Season 1</option>
+    </select>
+  </div>
+
   <div class="season-card">
     <div class="meta-block">
       <label>Season</label>
@@ -216,7 +393,7 @@
     <div class="meta-block">
       <label>Total Rounds</label>
       <div class="value">7</div>
-      <div class="sub">Planned</div>
+      <div class="sub">Planned Events</div>
     </div>
     <div class="meta-block">
       <label>Season Start</label>
@@ -231,254 +408,255 @@
       <div class="value neon">TBD</div>
     </div>
   </div>
-</div>
 
-<div class="section-header"><h2>Race Results — Season 2</h2></div>
+  <div class="section-header"><h2>Race Results — Season 2</h2></div>
 
-<div class="race-grid">
+  <div class="race-grid">
 
-  <!-- ROUND 1 -->
-  <div class="race-card">
-    <div class="card-header">
-      <img class="card-track-img" src="images/win/r1s2win.png" alt="Australia" onerror="this.src='images/placeholder-track.jpg'" />
-      <div class="card-header-overlay">
-        <div class="card-top-row">
-          <span class="round-badge">ROUND 1</span>
-          <span class="race-date">TBD 2026</span>
-        </div>
-        <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-ca"></span>
-          <div><div class="race-circuit">Circuit Gilles-Villeneuve</div><div class="race-location">Canada</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="podium">
-        <div class="podium-row">
-          <div class="pos p1">1</div>
-          <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">TBD</div>
-          <span class="team-tag">Team</span>
-        </div>
-        <div class="podium-row">
-          <div class="pos p2">2</div>
-          <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">TBD</div>
-          <span class="team-tag">Team</span>
-        </div>
-        <div class="podium-row">
-          <div class="pos p3">3</div>
-          <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
-          <div class="driver-name">TBD</div>
-          <span class="team-tag">Team</span>
+    <!-- ROUND 1 -->
+    <div class="race-card">
+      <div class="card-header">
+        <img class="card-track-img" src="images/win/r1s2win.png" alt="Canada" onerror="this.src='images/placeholder-track.jpg'" />
+        <div class="card-header-overlay">
+          <div class="card-top-row">
+            <span class="round-badge">ROUND 1</span>
+            <span class="race-date">TBD 2026</span>
+          </div>
+          <div class="card-bottom-row">
+            <span class="card-flag-wrap fi fi-ca"></span>
+            <div><div class="race-circuit">Circuit Gilles-Villeneuve</div><div class="race-location">Canada</div></div>
+          </div>
         </div>
       </div>
+      <div class="card-body">
+        <div class="podium">
+          <div class="podium-row">
+            <div class="pos p1">1</div>
+            <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P1 Team" onerror="this.style.display='none'" /></div>
+            <div class="driver-name">TBD</div>
+            <span class="team-tag">Team</span>
+          </div>
+          <div class="podium-row">
+            <div class="pos p2">2</div>
+            <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P2 Team" onerror="this.style.display='none'" /></div>
+            <div class="driver-name">TBD</div>
+            <span class="team-tag">Team</span>
+          </div>
+          <div class="podium-row">
+            <div class="pos p3">3</div>
+            <div class="team-logo-wrap"><img src="teams/ferrari.png" alt="P3 Team" onerror="this.style.display='none'" /></div>
+            <div class="driver-name">TBD</div>
+            <span class="team-tag">Team</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer"><a class="btn-results" href="r1s2.html">View Results</a></div>
     </div>
-    <div class="card-footer"><a class="btn-results" href="r1s2.html">View Results</a></div>
-  </div>
 
-  <!-- ROUND 2 -->
-  <div class="race-card upcoming">
-    <div class="card-header">
-      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
-      <div class="card-header-overlay">
-        <div class="card-top-row">
-          <span class="round-badge">ROUND 2</span>
-          <span class="race-date">TBD 2026</span>
-        </div>
-        <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-at"></span>
-          <div><div class="race-circuit">Red bull Ring</div><div class="race-location">Austria</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="podium">
-        <div class="podium-row">
-          <div class="pos p1">1</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p2">2</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p3">3</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
+    <!-- ROUND 2 -->
+    <div class="race-card upcoming">
+      <div class="card-header">
+        <img class="card-track-img" src="images/win/r2s2win.png" alt="Austria" onerror="this.src='images/placeholder-track.jpg'" />
+        <div class="card-header-overlay">
+          <div class="card-top-row">
+            <span class="round-badge">ROUND 2</span>
+            <span class="race-date">TBD 2026</span>
+          </div>
+          <div class="card-bottom-row">
+            <span class="card-flag-wrap fi fi-at"></span>
+            <div><div class="race-circuit">Red Bull Ring</div><div class="race-location">Austria</div></div>
+          </div>
         </div>
       </div>
+      <div class="card-body">
+        <div class="podium">
+          <div class="podium-row">
+            <div class="pos p1">1</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p2">2</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p3">3</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
     </div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
-  </div>
 
-  <!-- ROUND 3 -->
-  <div class="race-card upcoming">
-    <div class="card-header">
-      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
-      <div class="card-header-overlay">
-        <div class="card-top-row">
-          <span class="round-badge">ROUND 3</span>
-          <span class="race-date">TBD 2026</span>
-        </div>
-        <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-gb"></span>
-          <div><div class="race-circuit">Silverstone Circuit</div><div class="race-location">United Kingdom</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="podium">
-        <div class="podium-row">
-          <div class="pos p1">1</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p2">2</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p3">3</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
+    <!-- ROUND 3 -->
+    <div class="race-card upcoming">
+      <div class="card-header">
+        <img class="card-track-img" src="images/win/r2s2win.png" alt="United Kingdom" onerror="this.src='images/placeholder-track.jpg'" />
+        <div class="card-header-overlay">
+          <div class="card-top-row">
+            <span class="round-badge">ROUND 3</span>
+            <span class="race-date">TBD 2026</span>
+          </div>
+          <div class="card-bottom-row">
+            <span class="card-flag-wrap fi fi-gb"></span>
+            <div><div class="race-circuit">Silverstone Circuit</div><div class="race-location">United Kingdom</div></div>
+          </div>
         </div>
       </div>
+      <div class="card-body">
+        <div class="podium">
+          <div class="podium-row">
+            <div class="pos p1">1</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p2">2</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p3">3</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
     </div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
-  </div>
 
-  <!-- ROUND 4 -->
-  <div class="race-card upcoming">
-    <div class="card-header">
-      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
-      <div class="card-header-overlay">
-        <div class="card-top-row">
-          <span class="round-badge">ROUND 4</span>
-          <span class="race-date">TBD 2026</span>
-        </div>
-        <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-be"></span>
-          <div><div class="race-circuit">Spa-Francorchamps</div><div class="race-location">Belgium</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="podium">
-        <div class="podium-row">
-          <div class="pos p1">1</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p2">2</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p3">3</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
+    <!-- ROUND 4 -->
+    <div class="race-card upcoming">
+      <div class="card-header">
+        <img class="card-track-img" src="images/win/r2s2win.png" alt="Belgium" onerror="this.src='images/placeholder-track.jpg'" />
+        <div class="card-header-overlay">
+          <div class="card-top-row">
+            <span class="round-badge">ROUND 4</span>
+            <span class="race-date">TBD 2026</span>
+          </div>
+          <div class="card-bottom-row">
+            <span class="card-flag-wrap fi fi-be"></span>
+            <div><div class="race-circuit">Spa-Francorchamps</div><div class="race-location">Belgium</div></div>
+          </div>
         </div>
       </div>
+      <div class="card-body">
+        <div class="podium">
+          <div class="podium-row">
+            <div class="pos p1">1</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p2">2</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p3">3</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
     </div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
-  </div>
 
-  <!-- ROUND 5 -->
-  <div class="race-card upcoming">
-    <div class="card-header">
-      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
-      <div class="card-header-overlay">
-        <div class="card-top-row">
-          <span class="round-badge">ROUND 5</span>
-          <span class="race-date">TBD 2026</span>
-        </div>
-        <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-nl"></span>
-          <div><div class="race-circuit">Zandervoort</div><div class="race-location">Netherlands</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="podium">
-        <div class="podium-row">
-          <div class="pos p1">1</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p2">2</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p3">3</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
+    <!-- ROUND 5 -->
+    <div class="race-card upcoming">
+      <div class="card-header">
+        <img class="card-track-img" src="images/win/r2s2win.png" alt="Netherlands" onerror="this.src='images/placeholder-track.jpg'" />
+        <div class="card-header-overlay">
+          <div class="card-top-row">
+            <span class="round-badge">ROUND 5</span>
+            <span class="race-date">TBD 2026</span>
+          </div>
+          <div class="card-bottom-row">
+            <span class="card-flag-wrap fi fi-nl"></span>
+            <div><div class="race-circuit">Zandvoort</div><div class="race-location">Netherlands</div></div>
+          </div>
         </div>
       </div>
+      <div class="card-body">
+        <div class="podium">
+          <div class="podium-row">
+            <div class="pos p1">1</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p2">2</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p3">3</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
     </div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
-  </div>
 
-  <!-- ROUND 6 -->
-  <div class="race-card upcoming">
-    <div class="card-header">
-      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
-      <div class="card-header-overlay">
-        <div class="card-top-row">
-          <span class="round-badge">ROUND 6</span>
-          <span class="race-date">TBD 2026</span>
-        </div>
-        <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-it"></span>
-          <div><div class="race-circuit">Monza</div><div class="race-location">Italy</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="podium">
-        <div class="podium-row">
-          <div class="pos p1">1</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p2">2</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p3">3</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
+    <!-- ROUND 6 -->
+    <div class="race-card upcoming">
+      <div class="card-header">
+        <img class="card-track-img" src="images/win/r2s2win.png" alt="Italy" onerror="this.src='images/placeholder-track.jpg'" />
+        <div class="card-header-overlay">
+          <div class="card-top-row">
+            <span class="round-badge">ROUND 6</span>
+            <span class="race-date">TBD 2026</span>
+          </div>
+          <div class="card-bottom-row">
+            <span class="card-flag-wrap fi fi-it"></span>
+            <div><div class="race-circuit">Monza</div><div class="race-location">Italy</div></div>
+          </div>
         </div>
       </div>
+      <div class="card-body">
+        <div class="podium">
+          <div class="podium-row">
+            <div class="pos p1">1</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p2">2</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p3">3</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
     </div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
-  </div>
 
-  <!-- ROUND 7 -->
-  <div class="race-card upcoming">
-    <div class="card-header">
-      <img class="card-track-img" src="images/win/r2s2win.png" alt="China" onerror="this.src='images/placeholder-track.jpg'" />
-      <div class="card-header-overlay">
-        <div class="card-top-row">
-          <span class="round-badge">ROUND 7</span>
-          <span class="race-date">TBD 2026</span>
-        </div>
-        <div class="card-bottom-row">
-          <span class="card-flag-wrap fi fi-az"></span>
-          <div><div class="race-circuit">Baku</div><div class="race-location">Azerbaijan</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="podium">
-        <div class="podium-row">
-          <div class="pos p1">1</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p2">2</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
-        </div>
-        <div class="podium-row">
-          <div class="pos p3">3</div>
-          <div class="driver-name" style="color: var(--muted);">TBD</div>
+    <!-- ROUND 7 -->
+    <div class="race-card upcoming">
+      <div class="card-header">
+        <img class="card-track-img" src="images/win/r2s2win.png" alt="Azerbaijan" onerror="this.src='images/placeholder-track.jpg'" />
+        <div class="card-header-overlay">
+          <div class="card-top-row">
+            <span class="round-badge">ROUND 7</span>
+            <span class="race-date">TBD 2026</span>
+          </div>
+          <div class="card-bottom-row">
+            <span class="card-flag-wrap fi fi-az"></span>
+            <div><div class="race-circuit">Baku</div><div class="race-location">Azerbaijan</div></div>
+          </div>
         </div>
       </div>
+      <div class="card-body">
+        <div class="podium">
+          <div class="podium-row">
+            <div class="pos p1">1</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p2">2</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+          <div class="podium-row">
+            <div class="pos p3">3</div>
+            <div class="driver-name" style="color: var(--muted);">TBD</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
     </div>
-    <div class="card-footer"><span class="btn-upcoming">Upcoming Event</span></div>
+
   </div>
 
 </div>
@@ -486,24 +664,23 @@
 <footer>
   <div class="footer-logo-wrap">
     <img src="images/New%20Project.png" alt="KLR" />
-    <div class="footer-title">King League Racing</div>
+    <span>Kool League Racing Ecosystem &copy; 2026 · All Rights Reserved</span>
   </div>
-  <p>Season 2 · All rights reserved · KLR</p>
 </footer>
 
 <script>
   function switchSeason(val) {
     if (val === '1') {
-      window.location.href = 'season_1/index.html'; // Directs to Season 1 page
+      window.location.href = 'season_1/index.html';
     } else if (val === '2') {
-      window.location.href = 'index.html'; // Directs to Season 2 page
+      window.location.href = 'index.html';
     } else {
       window.location.href = 'season' + val + '.html';
     }
   }
 
-  // Set the target date for Round 1 of Season 2
-  const targetRaceTime = new Date("July 5, 2026 18:00:00").getTime();
+  // Set target date for Round 1
+  const targetRaceTime = new Date("August 4, 2026 18:00:00").getTime();
 
   function formatTimeNum(num) {
     return num < 10 ? '0' + num : num;
